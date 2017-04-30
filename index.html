@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>xListBox</title>
+  <style>
+    .xlistbox {
+      margin-bottom: 10px;
+      width: 400px;
+    }
+    .xlistbox.disable {
+      opacity: 0.5;
+    }
+    .xlistbox-item {
+      border: 1px solid black;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 5px;
+    }
+
+    .xlistbox-item.disabled {
+      opacity: 0.5;
+    }
+
+    .xlistbox-label {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    .xlistbox-item .xlistbox-checkbox {
+      width: 40px;
+      height: 40px;
+      padding: 10px;
+      border: 1px solid black;
+      margin-right: 10px;
+    }
+    .xlistbox-item .xlistbox-checkbox .xlistbox-flag {
+      width: 100%;
+      height: 100%;
+      border: 1px solid black;
+      background-color: black;
+      display: none;
+    }
+
+    .xlistbox-item.active .xlistbox-flag {
+      display: block;
+    }
+
+    .xlistbox-direction {
+      display: flex;
+      flex-direction: row;
+      cursor: pointer;
+    }
+  </style>
+  </head>
+  <body>
+
+<ul class="xlistbox listbox1" data-options="{&quot;movable&quot;:true,&quot;disabled&quot;:false,&quot;selectable&quot;:true,&quot;multiselect&quot;:false}"><li class="xlistbox-item disabled" data-options="{&quot;value&quot;:&quot;category&quot;,&quot;selected&quot;:true,&quot;disabled&quot;:true,&quot;movable&quot;:true}"><div class="xlistbox-label"><div class="xlistbox-checkbox"><div class="xlistbox-flag"></div></div><div class="xlistbox-labeltext">Категории</div></div><div class="xlistbox-direction"><div class="xlistbox-forward">↑</div><div class="xlistbox-backward">↓</div></div></li><li class="xlistbox-item" data-options="{&quot;value&quot;:&quot;worker&quot;,&quot;selected&quot;:false,&quot;movable&quot;:true}"><div class="xlistbox-label"><div class="xlistbox-checkbox"><div class="xlistbox-flag"></div></div><div class="xlistbox-labeltext">Исполнители</div></div><div class="xlistbox-direction"><div class="xlistbox-forward">↑</div><div class="xlistbox-backward">↓</div></div></li><li class="xlistbox-item" data-options="{&quot;value&quot;:&quot;worker&quot;,&quot;selected&quot;:true,&quot;movable&quot;:true}"><div class="xlistbox-label"><div class="xlistbox-checkbox"><div class="xlistbox-flag"></div></div><div class="xlistbox-labeltext">Элемент выключен</div></div><div class="xlistbox-direction"><div class="xlistbox-forward">↑</div><div class="xlistbox-backward">↓</div></div></li><li class="xlistbox-item" data-options="{&quot;value&quot;:&quot;order&quot;,&quot;selected&quot;:true}"><div class="xlistbox-label"><div class="xlistbox-checkbox"><div class="xlistbox-flag"></div></div><div class="xlistbox-labeltext">Заказы</div></div><div class="xlistbox-direction"><div class="xlistbox-forward">↑</div><div class="xlistbox-backward">↓</div></div></li></ul>
+
+
+    <script src="./jquery.min.js"></script>
+    <script src="./xListBox.js"></script>
+  </body>
+</html>
