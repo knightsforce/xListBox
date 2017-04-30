@@ -151,7 +151,7 @@ function createList(data) {
 	.attr("data-options", xlistboxOptions)
 	.on("click", handlerClick);
 	xlistbox.append(createElems(data));
-	if(data["disabled"]) xlistbox.addClass("disable");
+	if(data["disabled"]) xlistbox.addClass("xlistbox-disable");
 	return xlistbox;
 }
 
@@ -193,6 +193,7 @@ function createElems(data) {
 	var oneSelect = true;
 	var multiselect = data["multiselect"];
 	var parentMovable = data["movable"];
+	var movable = null;
 	var text = null;
 
 	var _li, _label;
@@ -203,7 +204,8 @@ function createElems(data) {
 		
 		disabled = options.disabled;
 		selected = options.selected;
-		
+		movable = options.movable;
+
 		text = options.label || "";
 		delete options.label;
 
@@ -218,20 +220,20 @@ function createElems(data) {
 		.attr("data-options", options)
 		.append(_label);
 		
-		if(parentMovable) {
+		if(parentMovable && movable) {
 			_li.append(itemDirection.clone());
 		}
 		
 		if(disabled) {
-			_li.addClass("disabled");
+			_li.addClass("xlistbox-disabled");
 		}
 		if(multiselect && selected) {
 			
-			_li.addClass("active");
+			_li.addClass("xlistbox-active");
 
 		} else if(oneSelect && selected) {
 			oneSelect = false;
-			_li.addClass("active");
+			_li.addClass("xlistbox-active");
 		}
 		arrList.push(_li);
 	}
@@ -260,15 +262,15 @@ function handlerClick(e) {
 	if(target.closest(".xlistbox-forward").length) {
 			
 		prevItem = currentItem.prev();
-		if(!JSON.parse(prevItem.attr("data-options"))["movable"]) return;
-		prevItem && prevItem.before(currentItem);
+		if(!prevItem.length || !JSON.parse(prevItem.attr("data-options"))["movable"]) return;
+		prevItem.before(currentItem);
 		currentItem.closest(".xlistbox").trigger("change");
 
 	} else if(target.closest(".xlistbox-backward").length) {
 
 		nextItem = currentItem.next();
-		if(!JSON.parse(nextItem.attr("data-options"))["movable"]) return;
-		nextItem && nextItem.after(currentItem);
+		if(!nextItem.length || !JSON.parse(nextItem.attr("data-options"))["movable"]) return;
+		nextItem.after(currentItem);
 		currentItem.closest(".xlistbox").trigger("change");
 
 	} else if(target.closest(".xlistbox-label").length) {
@@ -280,17 +282,17 @@ function handlerClick(e) {
 
 		currentCheckbox = currentItem.find(".xlistbox-checkbox");
 		itemArr = currentItem.closest(".xlistbox").find(".xlistbox-item");
-		if(!multiselect && itemArr.filter(".active").length && !currentItem.hasClass("active")) {
+		if(!multiselect && itemArr.filter(".xlistbox-active").length && !currentItem.hasClass("xlistbox-active")) {
 			return;
 		}
 
-		currentItem.toggleClass("active");
+		currentItem.toggleClass("xlistbox-active");
+
 		if(options["selected"]) {
 			delete options["selected"];
 		} else {
 			options["selected"]=true;
 		}
-
 		currentItem.closest(".xlistbox").trigger("change").trigger("select");
 		/*
 			Мог бы обойтись без класса active,
@@ -311,6 +313,7 @@ var createData1 = {
 	selectable: true,
 	movable: true,
 	disabled: false,
+	multiselect: true,
 	items: [
 		{
 			value: "category",
@@ -335,6 +338,7 @@ var createData1 = {
 			value: "order",
 			label: "Заказы",
 			selected: true,
+			movable: undefined,
 		}
 	]
 }
@@ -346,8 +350,11 @@ var createData2 = {
 	multiselect: true,
 };
 
-var l = $(".listbox1").xListBox(createData2);
+var l = $(".listbox1").xListBox(createData1);
 l.on("change", function(e){console.log("change")})
+.on("change", function(e){
+	//console.log($(this).find(".xListBox-labeltext").text(), JSON.parse($(this).attr("data-options")));
+})
 .on("select", function(e){console.log("select")})
 .appendTo("body");
 
