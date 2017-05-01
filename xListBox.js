@@ -1,134 +1,132 @@
 (function($) {
-jQuery.fn.xListBox = function(data) {
 
+var methods = {
+	option: function(key, val) {
+		var result = null;
+		switch(getType(key)) {
+			case "string":
+			
+				if(val !== undefined) {
+					$.data(this.get(0), key, val);
+					result = rerenderList(this);
+				} else {
+					result = $.data(this.get(0), key);
+				}
+				break;
+			case "object":
+				var data = $.data(this.get(0));
+				var obj = key;
+				for(var i in obj) {
+					data[i] = obj[i];
+				}
+				$.data(this.get(0), data);
+				result = rerenderList(this);
+				
+				break;
+			default:
+				result = this;
+				break;
+		}
+		return result;
+    },
+    items: function(items) {
+    	var result = null; 
+    	if(getType(items) == "array") {
+    		result = rerenderList(this, items);
+    	} else {
+    		var itemsArray = [];
+    		this.find(".xlistbox-item").each(function(i, item) {
+    			itemsArray.push($.data(item));
+    		});
+    		result = itemsArray;
+    	}
+    	return result;
+    },
+    getSelected: function() {
+    	return this.find(".xlistbox-item").filter(function(i, item){
+				return !!$.data(item, "selected");
+		});
+    },
+    getItem: function(value) {
+    	var xlistboxItems = this.find(".xlistbox-item");
+    	var result = this;
+    	if(typeof value == "object") {
+    		value = $.data(value.get(0), "value");
+    	}
+    	var options = null;
+		for(var i = 0; i<xlistboxItems.length; i++) {
+			options = $.data(xlistboxItems.get(i));
+			if(options.value == value) {
+				result = options;
+				break;
+			}
+		}
+		return result;
+    },
+    setItem: function(value, opt) {
+    	if(!value || getType(value) != "string") {
+    		return this;
+    	}
+
+    	var options = null;
+    	var xlistboxItems = this.find(".xlistbox-item");
+
+		xlistboxItems.each(function(i, item) {
+			options = $.data(item);
+			if(options.value != value) return;
+			for(let i in opt) {
+				options[i] = opt[i];
+			}
+			$.data(item, options);
+		});
+		return rerenderList(this);
+    }
+};
+
+jQuery.fn.xListBox = function(method) {
 	var currentElem = this;
-	if(!currentElem.hasClass("xlistbox") || !data) {
+	if(!currentElem.hasClass("xlistbox") || !methods) {
 		return currentElem;
 	}
 
 	var xlistboxItems = currentElem.find(".xlistbox-item");
 
-
-	var type = getType(data);
-	if(type == "string") {
-		var countArgs = arguments.length;
-		var arg1 = arguments[0];
-		var arg2 = arguments[1];
-		var arg3 = arguments[2];
-		switch(data) {
-			case "option":
-				if(countArgs==2) {
-					if(getType(arg2) == "string") {	
-
-						result = JSON.parse(currentElem.attr("data-options"))[arg2];
-					} else {
-
-						var options = JSON.parse(currentElem.attr("data-options"));
-						for(var i in arg2) {
-							options[i] = arg2[i];
-						}
-						currentElem.attr("data-options", JSON.stringify(options));
-						result = rerenderList(currentElem);
-					}
-
-				} else if(countArgs==3) {
-					var options = JSON.parse(currentElem.attr("data-options"));
-					options[arg2]=arg3;
-					currentElem.attr("data-options", JSON.stringify(options));
-					result=rerenderList(currentElem);
-				} else {
-					result=currentElem;
-				}
-				break;
-
-			case "items":
-				if(countArgs==1) {
-					result = parseDataFromDOM(currentElem);
-				} else if(countArgs==2) {
-					result = rerenderList(currentElem, arg2);
-				}
-				else {
-					result=currentElem;
-				}
-				break;
-
-			case "getSelected":
-				result = xlistboxItems.filter(function(i, item){
-					return !!JSON.parse(item.getAttribute("data-options"))["selected"];
+	switch(getType(method)) {
+		case "string":
+			result = methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
+			break;
+		default:
+			if(getType(methods)!="object") return currentElem;
+			var data = method;
+			if(!!data.items) {
+				if(getType(data.items) != "array") throw "The data must be an array of objects";
+			} else {
+				data.items = [];
+				currentElem.each(function(i, item) {
+					$.merge(data.items, parseDataFromDOM($(item)));
 				});
-				break;
-
-			case "getItem":
-				if(countArgs==2) {
-					
-					if(typeof arg2 == "object") {
-						arg2 = JSON.parse(arg2.attr("data-options"))["value"];
-
-					}
-
-					var options = null;
-					for(var i = 0; i<xlistboxItems.length; i++) {
-						options = JSON.parse(xlistboxItems.eq(i).attr("data-options"));
-						if(options.value == arg2) {
-							result = options;
-							break;
-						}
-					}
-				} else {
-					result=currentElem;
-				}
-				break;
-
-			case "setItem":
-				if(countArgs==3) {
-					var options = null;
-					xlistboxItems.each(function(i, item) {
-						options = JSON.parse(item.getAttribute("data-options"));
-						if(options.value != arg2) return;
-						for(let i in arg3) {
-							options[i] = arg3[i];
-						}
-						item.setAttribute("data-options", JSON.stringify(options));
-					});
-					result=rerenderList(currentElem);
-
-				} else {
-					result=currentElem;
-				}
-				break;
-			currentElem.trigger("change");
-		}
-	} else if(type == "object") {
-		if(!!data.items) {
-			if(getType(data.items) != "array") throw "The data must be an array of objects";
-		} else {
-			data.items = parseDataFromDOM(currentElem);
-		}
-			
-			/*
-				Чтобы на выходе всегда был обхект одного типа
-				Массив объектов
-			*/
-
-		result = createList(data);
+			}
+			result = initList(data);
+			break;
 	}
 
 	return result;
+
 };
 
+function initList(data) {
+	return createList(data);
+}
 
-
-function parseDataFromDOM(el) {
-
+function parseDataFromDOM(el) {//dataOption
 	var data = [];
 	var listItem = el.find("li");
 	var options = null;
 
 	listItem.each(function(i, item) {
+		options = $.extend({}, $.data(item));
 		item = $(item);
-		options = item.attr("data-options");
-		if(!options) return;
-		options = JSON.parse(options);
+		options["dataOptions"] = item.attr("data-options");
 		options.label = item.find(".xlistbox-labeltext").html();//Можно .text(), но тогда теги не будут учитываться
 		data.push(options);
 	});
@@ -139,38 +137,44 @@ function parseDataFromDOM(el) {
 	return data;
 };
 
-function createList(data) {
-	var xlistboxOptions = JSON.stringify({
-		movable: !!data["movable"],
-		disabled: !!data["disabled"],
-		selectable: !!data["selectable"],
-		multiselect: !!data["multiselect"],
-	});
+function createList(data, elem) {
+	var xlistboxOptions = JSON.stringify(data);
+	var xlistbox = null;
+	
+	if(!elem) {
+		xlistbox = $("<ul class='xlistbox'/>")
+		.on("click", handlerClick);
+	} else {
+		xlistbox = elem.empty();
+	}
 
-	var xlistbox = $("<ul class='xlistbox'/>")
-	.attr("data-options", xlistboxOptions)
-	.on("click", handlerClick);
+	xlistbox.attr("data-options", xlistboxOptions);
 	xlistbox.append(createElems(data));
+
 	if(data["disabled"]) xlistbox.addClass("xlistbox-disable");
+	else xlistbox.removeClass("xlistbox-disable");
+	$.data(xlistbox.get(0), data);
 	return xlistbox;
 }
+
 
 function rerenderList(elem, items) {
 	/*
 		На пересоздание с нуля уйдет меньше секунды при элементах = 5000
 	*/
-	var options = JSON.parse(elem.attr("data-options"));
+	var options = $.extend({}, $.data(elem.get(0)));
+	console.log("Выше")
 	if(items) {
 		options.items = items;
 	} else {
-		options.items = parseDataFromDOM(elem);
+		options.items = parseDataFromDOM(elem, true);
 	}
-	var parent = elem.parent();
-	elem.remove();
-	return parent.append(createList(options));
+
+	return createList(options, elem);
 }
 
 function createElems(data) {
+
 	var li = $("<li class='xlistbox-item'/>");
 
 	var label = $("<div class='xlistbox-label'/>");
@@ -207,9 +211,9 @@ function createElems(data) {
 		movable = options.movable;
 
 		text = options.label || "";
-		delete options.label;
+		//delete options.label;
 
-		options = JSON.stringify(options);
+		options = (options["dataOption"]) ? options["dataOption"] : JSON.stringify(options);
 		
 		_label = label.clone();
 
@@ -229,12 +233,13 @@ function createElems(data) {
 		}
 		if(multiselect && selected) {
 			
-			_li.addClass("xlistbox-active");
+			_li.addClass("xlistbox-selected");
 
 		} else if(oneSelect && selected) {
 			oneSelect = false;
-			_li.addClass("xlistbox-active");
+			_li.addClass("xlistbox-selected");
 		}
+		$.data(_li.get(0), items[i]);
 		arrList.push(_li);
 	}
 	return arrList;
@@ -248,8 +253,8 @@ function getType(obj) {
 function handlerClick(e) {
 	var target = $(e.target);
 	var currentItem = $(target).closest('.xlistbox-item');
-	var options = JSON.parse((currentItem.attr("data-options") || "{}"));
-	var parentOptions = JSON.parse((currentItem.closest(".xlistbox").attr("data-options") || "{}"));
+	var options = $.data(currentItem.get(0)) || {};
+	var parentOptions = $.data(currentItem.closest(".xlistbox").get(0)) || {};
 	if(parentOptions["disabled"] || options["disabled"]) return;
 
 	var multiselect = parentOptions["multiselect"];
@@ -262,14 +267,15 @@ function handlerClick(e) {
 	if(target.closest(".xlistbox-forward").length) {
 			
 		prevItem = currentItem.prev();
-		if(!prevItem.length || !JSON.parse(prevItem.attr("data-options"))["movable"]) return;
+
+		if(!prevItem.length || !$.data(prevItem.get(0))["movable"]) return;
 		prevItem.before(currentItem);
 		currentItem.closest(".xlistbox").trigger("change");
 
 	} else if(target.closest(".xlistbox-backward").length) {
 
 		nextItem = currentItem.next();
-		if(!nextItem.length || !JSON.parse(nextItem.attr("data-options"))["movable"]) return;
+		if(!nextItem.length || !$.data(nextItem.get(0))["movable"]) return;
 		nextItem.after(currentItem);
 		currentItem.closest(".xlistbox").trigger("change");
 
@@ -282,11 +288,11 @@ function handlerClick(e) {
 
 		currentCheckbox = currentItem.find(".xlistbox-checkbox");
 		itemArr = currentItem.closest(".xlistbox").find(".xlistbox-item");
-		if(!multiselect && itemArr.filter(".xlistbox-active").length && !currentItem.hasClass("xlistbox-active")) {
+		if(!multiselect && itemArr.filter(".xlistbox-selected").length && !currentItem.hasClass("xlistbox-selected")) {
 			return;
 		}
 
-		currentItem.toggleClass("xlistbox-active");
+		currentItem.toggleClass("xlistbox-selected");
 
 		if(options["selected"]) {
 			delete options["selected"];
@@ -300,7 +306,7 @@ function handlerClick(e) {
 			но вам нужны пользователи со старыми браузерами 
 		*/
 	}
-	currentItem.attr("data-options", JSON.stringify(options));
+	$.data(currentItem.get(0), options)
 		/*
 			Могу переписать без делегирования
 		*/
@@ -351,31 +357,31 @@ var createData2 = {
 };
 
 var l = $(".listbox1").xListBox(createData1);
-l.on("change", function(e){console.log("change")})
-.on("change", function(e){
-	//console.log($(this).find(".xListBox-labeltext").text(), JSON.parse($(this).attr("data-options")));
-})
+/*
+	var l = $(".listbox1, .listbox2").xListBox(createData2); - работает,
+	но с createData2 нет, т.к. программные опции приоритетнее
+*/
+l.on("change", function(e){console.log($(this).xListBox('items'));})
 .on("select", function(e){console.log("select")})
 .appendTo("body");
 
 /*
 Тест option
-var items = console.log(l.xListBox("option", "disabled"));
-var items = l.xListBox("option", {"disabled": true});
-var items = console.log(l.xListBox("option", "disabled"));
-var items = l.xListBox("option", "disabled", false);
-var items = console.log(l.xListBox("option", "disabled"));
+console.log(l.xListBox("option", "disabled"));
+l.xListBox("option", {"disabled": true});
+console.log(l.xListBox("option", "disabled"));
+l.xListBox("option", "disabled", false);
+console.log(l.xListBox("option", "disabled"));
 */
 
 /*
 Тест items
-var items = l.xListBox("items");
+var items = l.xListBox("items");//Написано, что возвращать в формате items
 console.log(items);
 items = items.reverse();
 console.log(items);
 l.xListBox("items", items);
 */
-
 
 /*
 Тест getSelected
