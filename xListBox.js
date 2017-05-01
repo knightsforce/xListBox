@@ -336,7 +336,7 @@ var createData1 = {
 		},
 		{
 			value: "element disble",
-			label: "Элемент выключен",
+			label: "Элемент",
 			selected: true,
 			movable: true,
 		},
