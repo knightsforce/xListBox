@@ -159,8 +159,8 @@ function createList(data, elem) {
 	xlistbox.attr("data-options", xlistboxOptions);
 	xlistbox.append(createElems(data));
 
-	if(data["disabled"]) xlistbox.addClass("xlistbox-item-disable");
-	else xlistbox.removeClass("xlistbox-item-disable");
+	if(data["disabled"]) xlistbox.addClass("xlistbox-disabled");
+	else xlistbox.removeClass("xlistbox-item-disabled");
 	xlistbox.data(data);
 	return xlistbox;
 }
