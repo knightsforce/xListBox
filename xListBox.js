@@ -239,11 +239,13 @@ function createElems(data) {
 		if(disabled) {
 			_li.addClass("xlistbox-item-disabled");
 		}
+		
+
 		if(multiselect && selected) {
 			
 			_li.addClass("xlistbox-item-selected");
 
-		} else if(oneSelect && selected) {
+		} else if(oneSelect && selected && !disabled) {
 			oneSelect = false;
 			_li.addClass("xlistbox-item-selected");
 		}
@@ -362,13 +364,13 @@ var createData1 = {
 		{
 			value: "element disble",
 			label: "Элемент",
-			selected: true,
+			selected: false,
 			movable: true,
 		},
 		{
 			value: "order",
 			label: "Заказы",
-			selected: true,
+			selected: false,
 			movable: undefined,
 		}
 	]
