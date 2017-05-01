@@ -113,6 +113,8 @@ jQuery.fn.xListBox = function(method) {
 				});
 			}
 			result = initList(data);
+			this.after(result);
+			this.remove();
 			break;
 	}
 
@@ -154,6 +156,18 @@ function createList(data, elem) {
 		.on("click", handlerClick);
 	} else {
 		xlistbox = elem.empty();
+	}
+
+	if(!data.multiselect) {
+		var itemsArray = data.items;
+		var oneSelect = false;
+		for(var i = 0; i<itemsArray.length; i++) {
+			if(!oneSelect && itemsArray[i]["selected"]) {
+				oneSelect=true;
+				continue;
+			}
+			oneSelect && (itemsArray[i]["selected"]=false);
+		}
 	}
 
 	xlistbox.attr("data-options", xlistboxOptions);
@@ -245,7 +259,7 @@ function createElems(data) {
 			
 			_li.addClass("xlistbox-item-selected");
 
-		} else if(oneSelect && selected && !disabled) {
+		} else if(oneSelect && selected) {
 			oneSelect = false;
 			_li.addClass("xlistbox-item-selected");
 		}
@@ -312,10 +326,20 @@ function handlerClick(e) {
 			/*
 				Можно объединить в один if, но это лишние манипуляции с DOM
 			*/
+		var itemsSelected = allItems.filter(".xlistbox-item-selected");
 
-		currentCheckbox = currentItem.find(".xlistbox-item-checkbox");
-		if(!multiselect && allItems.filter(".xlistbox-item-selected").length && !currentItem.hasClass("xlistbox-item-selected")) {
-			return;
+		if(!multiselect) {
+			var currentElemDOM = currentItem.get(0);
+			console.log(currentElemDOM)
+			itemsSelected.filter(function(i, item) {
+				if(item==currentElemDOM) return false;
+				return true;
+			})
+			.removeClass("xlistbox-item-selected");
+			for(var i = 0; i<itemsArray.length; i++) {
+				itemsArray[i]["selected"]=false;
+			}
+
 		}
 
 		currentItem.toggleClass("xlistbox-item-selected");
@@ -337,7 +361,6 @@ function handlerClick(e) {
 		/*
 			Могу переписать без делегирования
 		*/
-
 }
 
 })(jQuery);
@@ -358,7 +381,7 @@ var createData1 = {
 		{
 			value: "worker",
 			label: "Исполнители",
-			selected: false,
+			selected: true,
 			movable: true,
 		},
 		{
@@ -370,7 +393,7 @@ var createData1 = {
 		{
 			value: "order",
 			label: "Заказы",
-			selected: false,
+			selected: true,
 			movable: undefined,
 		}
 	]
@@ -410,6 +433,8 @@ console.log(items);
 l.xListBox("items", items);
 */
 
+var items = l.xListBox("items");//Написано, что возвращать в формате items
+console.log(items);
 /*
 Тест getSelected
 console.log(l.xListBox("getSelected"));
