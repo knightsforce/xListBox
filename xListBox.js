@@ -104,7 +104,9 @@ jQuery.fn.xListBox = function(method) {
 			break;
 		default:
 			if(getType(methods)!="object") return currentElem;
-			var data = method;
+			var data = this.data();
+			data = $.extend(getOptionsFromDOM(this), data, method);
+
 			if(!!data.items) {
 				if(getType(data.items) != "array") throw "The data must be an array of objects";
 			} else {
@@ -125,6 +127,10 @@ jQuery.fn.xListBox = function(method) {
 
 function initList(data) {
 	return createList(data);
+}
+
+function getOptionsFromDOM(elem) {
+	return JSON.parse(elem.attr("data-options"));
 }
 
 function parseDataFromDOM(el) {//dataOption

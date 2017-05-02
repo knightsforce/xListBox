@@ -65,35 +65,43 @@
   <body>
 <h2>При $(СПИСОК).xlistbox(СОЗДАТЬ) - создается НОВЫЙ список на основе существующего</h2>
 <div id="cont0" class="container">
-<h3>Оригинальный список ".xlistbox"</h3>
+<h3>Оригинальный список Без интерактива ".xlistbox"</h3>
 <p>
   От данной списка будет производиться создание новых
 </p>
-<ul id="originList" class="xlistbox listbox1" data-options="{&quot;movable&quot;:true,&quot;disabled&quot;:false,&quot;selectable&quot;:true,&quot;multiselect&quot;:false}"><li class="xlistbox-item disabled" data-options="{&quot;value&quot;:&quot;category&quot;,&quot;selected&quot;:true,&quot;disabled&quot;:true,&quot;movable&quot;:true}"><div class="xlistbox-label"><div class="xlistbox-checkbox"><div class="xlistbox-flag"></div></div><div class="xlistbox-labeltext">Категории</div></div><div class="xlistbox-direction"><div class="xlistbox-forward">↑</div><div class="xlistbox-backward">↓</div></div></li><li class="xlistbox-item" data-options="{&quot;value&quot;:&quot;worker&quot;,&quot;selected&quot;:false,&quot;movable&quot;:true}"><div class="xlistbox-label"><div class="xlistbox-checkbox"><div class="xlistbox-flag"></div></div><div class="xlistbox-labeltext">Исполнители</div></div><div class="xlistbox-direction"><div class="xlistbox-forward">↑</div><div class="xlistbox-backward">↓</div></div></li><li class="xlistbox-item" data-options="{&quot;value&quot;:&quot;worker&quot;,&quot;selected&quot;:true,&quot;movable&quot;:true}"><div class="xlistbox-label"><div class="xlistbox-checkbox"><div class="xlistbox-flag"></div></div><div class="xlistbox-labeltext">Элемент выключен</div></div><div class="xlistbox-direction"><div class="xlistbox-forward">↑</div><div class="xlistbox-backward">↓</div></div></li><li class="xlistbox-item" data-options="{&quot;value&quot;:&quot;order&quot;,&quot;selected&quot;:true}"><div class="xlistbox-label"><div class="xlistbox-checkbox"><div class="xlistbox-flag"></div></div><div class="xlistbox-labeltext">Заказы</div></div><div class="xlistbox-direction"><div class="xlistbox-forward">↑</div><div class="xlistbox-backward">↓</div></div></li></ul>
+<ul id = "originList" class="xlistbox listbox1" data-options="{&quot;selectable&quot;:true,&quot;movable&quot;:true,&quot;disabled&quot;:false,&quot;multiselect&quot;:true,&quot;items&quot;:[{&quot;value&quot;:&quot;category&quot;,&quot;label&quot;:&quot;Категории&quot;,&quot;selected&quot;:true,&quot;disabled&quot;:true,&quot;movable&quot;:true},{&quot;value&quot;:&quot;worker&quot;,&quot;label&quot;:&quot;Исполнители&quot;,&quot;selected&quot;:true,&quot;movable&quot;:true},{&quot;value&quot;:&quot;element disble&quot;,&quot;label&quot;:&quot;Элемент&quot;,&quot;selected&quot;:false,&quot;movable&quot;:true},{&quot;value&quot;:&quot;order&quot;,&quot;label&quot;:&quot;Заказы&quot;,&quot;selected&quot;:true}]}"><li class="xlistbox-item xlistbox-item-disabled xlistbox-item-selected" data-options="{&quot;value&quot;:&quot;category&quot;,&quot;label&quot;:&quot;Категории&quot;,&quot;selected&quot;:true,&quot;disabled&quot;:true,&quot;movable&quot;:true}"><div class="xlistbox-item-label"><div class="xlistbox-item-checkbox"><div class="xlistbox-item-flag"></div></div><div class="xlistbox-item-labeltext">Категории</div></div><div class="xlistbox-item-direction"><div class="xlistbox-item-forward">↑</div><div class="xlistbox-item-backward">↓</div></div></li><li class="xlistbox-item xlistbox-item-selected" data-options="{&quot;value&quot;:&quot;worker&quot;,&quot;label&quot;:&quot;Исполнители&quot;,&quot;selected&quot;:true,&quot;movable&quot;:true}"><div class="xlistbox-item-label"><div class="xlistbox-item-checkbox"><div class="xlistbox-item-flag"></div></div><div class="xlistbox-item-labeltext">Исполнители</div></div><div class="xlistbox-item-direction"><div class="xlistbox-item-forward">↑</div><div class="xlistbox-item-backward">↓</div></div></li><li class="xlistbox-item" data-options="{&quot;value&quot;:&quot;element disble&quot;,&quot;label&quot;:&quot;Элемент&quot;,&quot;selected&quot;:false,&quot;movable&quot;:true}"><div class="xlistbox-item-label"><div class="xlistbox-item-checkbox"><div class="xlistbox-item-flag"></div></div><div class="xlistbox-item-labeltext">Элемент</div></div><div class="xlistbox-item-direction"><div class="xlistbox-item-forward">↑</div><div class="xlistbox-item-backward">↓</div></div></li><li class="xlistbox-item xlistbox-item-selected" data-options="{&quot;value&quot;:&quot;order&quot;,&quot;label&quot;:&quot;Заказы&quot;,&quot;selected&quot;:true}"><div class="xlistbox-item-label"><div class="xlistbox-item-checkbox"><div class="xlistbox-item-flag"></div></div><div class="xlistbox-item-labeltext">Заказы</div></div></li></ul>
 </div>
+<h2>ПЕРВЫЙ созданный список - построен на базе данных из оригинальноо списка, ОСТАЛЬНЫЕ - программно</h2>
     <div id="cont1" class="container">
-      <h3>Список 1. Опции:</h3>
+      <h3>Список 1. Создан от элемента. Опции:</h3>
       <h5>selectable = true</h5>
       <h5>movable = false</h5>
       <h5>disabled = false</h5>
       <h5>multiselect = true</h5>
     </div>
     <div id="cont2" class="container">
-      <h3>Список 2. Опции:</h3>
+      <h3>Список 2. Создан программно. Опции:</h3>
+      <h5>selectable = true</h5>
+      <h5>movable = false</h5>
+      <h5>disabled = false</h5>
+      <h5>multiselect = true</h5>
+    </div>
+    <div id="cont3" class="container">
+      <h3>Список 3. Создан программно. Опции:</h3>
       <h5>selectable = false</h5>
       <h5>movable = true</h5>
       <h5>disabled = false</h5>
       <h5>multiselect = true (не играет роли, т.к. selectable = false)</h5>
     </div>
-    <div id="cont3" class="container">
-      <h3>Список 3. Опции:</h3>
+    <div id="cont4" class="container">
+      <h3>Список 4. Создан программно. Опции:</h3>
       <h5>selectable = true</h5>
       <h5>movable = true</h5>
       <h5>disabled = true (интерактив отсутствует)</h5>
       <h5>multiselect = true</h5>
     </div>
-    <div id="cont4" class="container">
-      <h3>Список 4. Опции:</h3>
+    <div id="cont5" class="container">
+      <h3>Список 5. Создан программно. Опции:</h3>
       <h5>selectable = true</h5>
       <h5>movable = true</h5>
       <h5>disabled = false</h5>
