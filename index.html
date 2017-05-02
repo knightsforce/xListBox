@@ -71,192 +71,53 @@
 
 <h2>ПЕРВЫЙ созданный список - построен на базе данных из оригинальноо списка, ОСТАЛЬНЫЕ - программно</h2>
 
-<div id="tb1" class="testBlock">
 
-<h2>Исходный список:</h2>
-<ul class="xlistbox listbox1" data-options='{"selectable":true,"movable":true,"disabled":false,"multiselect":true,"items":[{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true},{"value":"worker","label":"Исполнители","selected":true,"movable":true},{"value":"element disble","label":"Элемент","selected":false,"movable":true},{"value":"order","label":"Заказы","selected":true}]}'>
+<div class="testBlock">
+    <div class="container">
+      <h3>Список 1. Разметка с атрибутами:</h3>
+      <ul id="originList1" class="xlistbox">
+        <li value="category" selected>Категории</li>
+        <li value="worker">Исполнители</li>
+        <li value="disabled" selected disabled>Элемент выключен</li>
+        <li value="order" selected>Заказы</li>
+      </ul>
+    </div>
+</div>
+
+
+<div class="testBlock">
+    <div class="container">
+      <h3>Список 2. Разметка с data-options:</h3>
+      <ul id="originList2" class="xlistbox" data-options='{"selectable":true,"movable":true,"disabled":false,"multiselect":true,"items":[{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true},{"value":"worker","label":"Исполнители","selected":true,"movable":true},{"value":"element disble","label":"Элемент","selected":false,"movable":true},{"value":"order","label":"Заказы","selected":true}]}'>
+        <li data-options='{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true}'>Категории</li>
+        <li data-options='{"value":"worker","label":"Исполнители","selected":true,"movable":true}'>Исполнители</li>
+        <li data-options='{"value":"element","label":"Элемент","selected":false,"movable":true}'>Элемент выключен</li>
+        <li data-options='{"value":"order","label":"Заказы","selected":true}'>Заказы</li>
+      </ul> 
+    </div>
+</div>
+
   
-  <li class='xlistbox-item xlistbox-item-disabled xlistbox-item-selected" data-options="{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true}'>
-       <div class="xlistbox-item-label">
-        <div class="xlistbox-item-checkbox">
-          <div class="xlistbox-item-flag"></div>
-        </div>
-        <div class="xlistbox-item-labeltext">Категории</div>
-       </div>
-       <div class="xlistbox-item-direction">
-        <div class="xlistbox-item-forward">↑</div>
-        <div class="xlistbox-item-backward">↓</div>
-       </div>
-  </li>
-  <li class='xlistbox-item xlistbox-item-selected' data-options='{"value":"worker","label":"Исполнители","selected":true,"movable":true}'>
-    <div class='xlistbox-item-label'>
-      <div class='xlistbox-item-checkbox'>
-        <div class='xlistbox-item-flag'></div>
-      </div>
-      <div class='xlistbox-item-labeltext'>Исполнители</div>
-    </div>
-    <div class='xlistbox-item-direction'>
-      <div class='xlistbox-item-forward'>↑</div>
-      <div class='xlistbox-item-backward'>↓</div>
-      </div>
-  </li>
-  <li class='xlistbox-item xlistbox-item-selected' data-options='{"value":"element","label":"Элемент","selected":false,"movable":true}'>
-    <div class='xlistbox-item-label'>
-      <div class='xlistbox-item-checkbox'>
-        <div class='xlistbox-item-flag'></div>
-      </div>
-      <div class='xlistbox-item-labeltext'>Элемент</div>
-    </div>
-    <div class='xlistbox-item-direction'>
-      <div class='xlistbox-item-forward'>↑</div>
-      <div class='xlistbox-item-backward'>↓</div>
-      </div>
-  </li>
-  <li class='xlistbox-item xlistbox-item-selected' data-options='{"value":"order","label":"Заказы","selected":true}'>
-    <div class='xlistbox-item-label'>
-      <div class='xlistbox-item-checkbox'>
-        <div class='xlistbox-item-flag'></div>
-      </div>
-      <div class='xlistbox-item-labeltext'>Заказы</div>
-    </div>
-    <div class='xlistbox-item-direction'>
-      <div class='xlistbox-item-forward'>↑</div>
-      <div class='xlistbox-item-backward'>↓</div>
-      </div>
-  </li>
-</ul>
-
-<h5>HTML разметка:</h5>
-    <p class="markup">
-    <ul class="xlistbox listbox1">
-      <li value="category" selected>Категории</li>
-      <li value="worker">Исполнители</li>
-      <li value="disabled" selected disabled>Элемент выключен</li>
-      <li value="order" selected>Заказы</li>
-    </ul>
-    </p>
-
+<div id="tb1" class="testBlock">
     <div id="cont1" class="container">
       <h3>Список 1. Создан от элемента. Опции:</h3>
       <h5>selectable = true</h5>
       <h5>movable = false</h5>
       <h5>disabled = false</h5>
       <h5>multiselect = true</h5>
-      <ul id = "originList1" class="xlistbox listbox1" data-options='{"selectable":true,"movable":true,"disabled":false,"multiselect":true,"items":[{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true},{"value":"worker","label":"Исполнители","selected":true,"movable":true},{"value":"element disble","label":"Элемент","selected":false,"movable":true},{"value":"order","label":"Заказы","selected":true}]}'>
-  
-  <li class='xlistbox-item xlistbox-item-disabled xlistbox-item-selected" data-options="{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true}'>
-       <div class="xlistbox-item-label">
-        <div class="xlistbox-item-checkbox">
-          <div class="xlistbox-item-flag"></div>
-        </div>
-        <div class="xlistbox-item-labeltext">Категории</div>
-       </div>
-       <div class="xlistbox-item-direction">
-        <div class="xlistbox-item-forward">↑</div>
-        <div class="xlistbox-item-backward">↓</div>
-       </div>
-  </li>
-  <li class='xlistbox-item xlistbox-item-selected' data-options='{"value":"worker","label":"Исполнители","selected":true,"movable":true}'>
-    <div class='xlistbox-item-label'>
-      <div class='xlistbox-item-checkbox'>
-        <div class='xlistbox-item-flag'></div>
-      </div>
-      <div class='xlistbox-item-labeltext'>Исполнители</div>
-    </div>
-    <div class='xlistbox-item-direction'>
-      <div class='xlistbox-item-forward'>↑</div>
-      <div class='xlistbox-item-backward'>↓</div>
-      </div>
-  </li>
-  <li class='xlistbox-item xlistbox-item-selected' data-options='{"value":"element","label":"Элемент","selected":false,"movable":true}'>
-    <div class='xlistbox-item-label'>
-      <div class='xlistbox-item-checkbox'>
-        <div class='xlistbox-item-flag'></div>
-      </div>
-      <div class='xlistbox-item-labeltext'>Элемент</div>
-    </div>
-    <div class='xlistbox-item-direction'>
-      <div class='xlistbox-item-forward'>↑</div>
-      <div class='xlistbox-item-backward'>↓</div>
-      </div>
-  </li>
-  <li class='xlistbox-item xlistbox-item-selected' data-options='{"value":"order","label":"Заказы","selected":true}'>
-    <div class='xlistbox-item-label'>
-      <div class='xlistbox-item-checkbox'>
-        <div class='xlistbox-item-flag'></div>
-      </div>
-      <div class='xlistbox-item-labeltext'>Заказы</div>
-    </div>
-    <div class='xlistbox-item-direction'>
-      <div class='xlistbox-item-forward'>↑</div>
-      <div class='xlistbox-item-backward'>↓</div>
-      </div>
-  </li>
-</ul>
     </div>
 </div>
 
-  <div id="tb2" class="testBlock">
+
+<div id="tb2" class="testBlock">
     <div id="cont2" class="container">
       <h3>Список 2. Создан программно. Опции:</h3>
       <h5>selectable = true</h5>
       <h5>movable = false</h5>
       <h5>disabled = false</h5>
       <h5>multiselect = true</h5>
-    <ul id = "originList2" class="xlistbox listbox1" data-options='{"selectable":true,"movable":true,"disabled":false,"multiselect":true,"items":[{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true},{"value":"worker","label":"Исполнители","selected":true,"movable":true},{"value":"element disble","label":"Элемент","selected":false,"movable":true},{"value":"order","label":"Заказы","selected":true}]}'>
-  
-  <li class='xlistbox-item xlistbox-item-disabled xlistbox-item-selected" data-options="{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true}'>
-       <div class="xlistbox-item-label">
-        <div class="xlistbox-item-checkbox">
-          <div class="xlistbox-item-flag"></div>
-        </div>
-        <div class="xlistbox-item-labeltext">Категории</div>
-       </div>
-       <div class="xlistbox-item-direction">
-        <div class="xlistbox-item-forward">↑</div>
-        <div class="xlistbox-item-backward">↓</div>
-       </div>
-  </li>
-  <li class='xlistbox-item xlistbox-item-selected' data-options='{"value":"worker","label":"Исполнители","selected":true,"movable":true}'>
-    <div class='xlistbox-item-label'>
-      <div class='xlistbox-item-checkbox'>
-        <div class='xlistbox-item-flag'></div>
-      </div>
-      <div class='xlistbox-item-labeltext'>Исполнители</div>
-    </div>
-    <div class='xlistbox-item-direction'>
-      <div class='xlistbox-item-forward'>↑</div>
-      <div class='xlistbox-item-backward'>↓</div>
-      </div>
-  </li>
-  <li class='xlistbox-item xlistbox-item-selected' data-options='{"value":"element","label":"Элемент","selected":false,"movable":true}'>
-    <div class='xlistbox-item-label'>
-      <div class='xlistbox-item-checkbox'>
-        <div class='xlistbox-item-flag'></div>
-      </div>
-      <div class='xlistbox-item-labeltext'>Элемент</div>
-    </div>
-    <div class='xlistbox-item-direction'>
-      <div class='xlistbox-item-forward'>↑</div>
-      <div class='xlistbox-item-backward'>↓</div>
-      </div>
-  </li>
-  <li class='xlistbox-item xlistbox-item-selected' data-options='{"value":"order","label":"Заказы","selected":true}'>
-    <div class='xlistbox-item-label'>
-      <div class='xlistbox-item-checkbox'>
-        <div class='xlistbox-item-flag'></div>
-      </div>
-      <div class='xlistbox-item-labeltext'>Заказы</div>
-    </div>
-    <div class='xlistbox-item-direction'>
-      <div class='xlistbox-item-forward'>↑</div>
-      <div class='xlistbox-item-backward'>↓</div>
-      </div>
-  </li>
-</ul>
     </div>
 </div>
-
 
   <div id="tb3" class="testBlock">
     <div id="cont3" class="container">
@@ -265,57 +126,6 @@
       <h5>movable = true</h5>
       <h5>disabled = false</h5>
       <h5>multiselect = true (не играет роли, т.к. selectable = false)</h5>
-      <ul id = "originList3" class="xlistbox listbox1" data-options='{"selectable":true,"movable":true,"disabled":false,"multiselect":true,"items":[{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true},{"value":"worker","label":"Исполнители","selected":true,"movable":true},{"value":"element disble","label":"Элемент","selected":false,"movable":true},{"value":"order","label":"Заказы","selected":true}]}'>
-  
-  <li class='xlistbox-item xlistbox-item-disabled xlistbox-item-selected" data-options="{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true}'>
-       <div class="xlistbox-item-label">
-        <div class="xlistbox-item-checkbox">
-          <div class="xlistbox-item-flag"></div>
-        </div>
-        <div class="xlistbox-item-labeltext">Категории</div>
-       </div>
-       <div class="xlistbox-item-direction">
-        <div class="xlistbox-item-forward">↑</div>
-        <div class="xlistbox-item-backward">↓</div>
-       </div>
-  </li>
-  <li class='xlistbox-item xlistbox-item-selected' data-options='{"value":"worker","label":"Исполнители","selected":true,"movable":true}'>
-    <div class='xlistbox-item-label'>
-      <div class='xlistbox-item-checkbox'>
-        <div class='xlistbox-item-flag'></div>
-      </div>
-      <div class='xlistbox-item-labeltext'>Исполнители</div>
-    </div>
-    <div class='xlistbox-item-direction'>
-      <div class='xlistbox-item-forward'>↑</div>
-      <div class='xlistbox-item-backward'>↓</div>
-      </div>
-  </li>
-  <li class='xlistbox-item xlistbox-item-selected' data-options='{"value":"element","label":"Элемент","selected":false,"movable":true}'>
-    <div class='xlistbox-item-label'>
-      <div class='xlistbox-item-checkbox'>
-        <div class='xlistbox-item-flag'></div>
-      </div>
-      <div class='xlistbox-item-labeltext'>Элемент</div>
-    </div>
-    <div class='xlistbox-item-direction'>
-      <div class='xlistbox-item-forward'>↑</div>
-      <div class='xlistbox-item-backward'>↓</div>
-      </div>
-  </li>
-  <li class='xlistbox-item xlistbox-item-selected' data-options='{"value":"order","label":"Заказы","selected":true}'>
-    <div class='xlistbox-item-label'>
-      <div class='xlistbox-item-checkbox'>
-        <div class='xlistbox-item-flag'></div>
-      </div>
-      <div class='xlistbox-item-labeltext'>Заказы</div>
-    </div>
-    <div class='xlistbox-item-direction'>
-      <div class='xlistbox-item-forward'>↑</div>
-      <div class='xlistbox-item-backward'>↓</div>
-      </div>
-  </li>
-</ul>
     </div>
 </div>
 
@@ -326,57 +136,7 @@
       <h5>movable = true</h5>
       <h5>disabled = true (интерактив отсутствует)</h5>
       <h5>multiselect = true</h5>
-      <ul id = "originList4" class="xlistbox listbox1" data-options='{"selectable":true,"movable":true,"disabled":false,"multiselect":true,"items":[{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true},{"value":"worker","label":"Исполнители","selected":true,"movable":true},{"value":"element disble","label":"Элемент","selected":false,"movable":true},{"value":"order","label":"Заказы","selected":true}]}'>
-  
-  <li class='xlistbox-item xlistbox-item-disabled xlistbox-item-selected" data-options="{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true}'>
-       <div class="xlistbox-item-label">
-        <div class="xlistbox-item-checkbox">
-          <div class="xlistbox-item-flag"></div>
-        </div>
-        <div class="xlistbox-item-labeltext">Категории</div>
-       </div>
-       <div class="xlistbox-item-direction">
-        <div class="xlistbox-item-forward">↑</div>
-        <div class="xlistbox-item-backward">↓</div>
-       </div>
-  </li>
-  <li class='xlistbox-item xlistbox-item-selected' data-options='{"value":"worker","label":"Исполнители","selected":true,"movable":true}'>
-    <div class='xlistbox-item-label'>
-      <div class='xlistbox-item-checkbox'>
-        <div class='xlistbox-item-flag'></div>
-      </div>
-      <div class='xlistbox-item-labeltext'>Исполнители</div>
-    </div>
-    <div class='xlistbox-item-direction'>
-      <div class='xlistbox-item-forward'>↑</div>
-      <div class='xlistbox-item-backward'>↓</div>
-      </div>
-  </li>
-  <li class='xlistbox-item xlistbox-item-selected' data-options='{"value":"element","label":"Элемент","selected":false,"movable":true}'>
-    <div class='xlistbox-item-label'>
-      <div class='xlistbox-item-checkbox'>
-        <div class='xlistbox-item-flag'></div>
-      </div>
-      <div class='xlistbox-item-labeltext'>Элемент</div>
-    </div>
-    <div class='xlistbox-item-direction'>
-      <div class='xlistbox-item-forward'>↑</div>
-      <div class='xlistbox-item-backward'>↓</div>
-      </div>
-  </li>
-  <li class='xlistbox-item xlistbox-item-selected' data-options='{"value":"order","label":"Заказы","selected":true}'>
-    <div class='xlistbox-item-label'>
-      <div class='xlistbox-item-checkbox'>
-        <div class='xlistbox-item-flag'></div>
-      </div>
-      <div class='xlistbox-item-labeltext'>Заказы</div>
-    </div>
-    <div class='xlistbox-item-direction'>
-      <div class='xlistbox-item-forward'>↑</div>
-      <div class='xlistbox-item-backward'>↓</div>
-      </div>
-  </li>
-</ul>
+      
     </div>
 </div>
 
@@ -387,57 +147,6 @@
       <h5>movable = true</h5>
       <h5>disabled = false</h5>
       <h5>multiselect = false</h5>
-      <ul id = "originList5" class="xlistbox listbox1" data-options='{"selectable":true,"movable":true,"disabled":false,"multiselect":true,"items":[{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true},{"value":"worker","label":"Исполнители","selected":true,"movable":true},{"value":"element disble","label":"Элемент","selected":false,"movable":true},{"value":"order","label":"Заказы","selected":true}]}'>
-  
-  <li class='xlistbox-item xlistbox-item-disabled xlistbox-item-selected" data-options="{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true}'>
-       <div class="xlistbox-item-label">
-        <div class="xlistbox-item-checkbox">
-          <div class="xlistbox-item-flag"></div>
-        </div>
-        <div class="xlistbox-item-labeltext">Категории</div>
-       </div>
-       <div class="xlistbox-item-direction">
-        <div class="xlistbox-item-forward">↑</div>
-        <div class="xlistbox-item-backward">↓</div>
-       </div>
-  </li>
-  <li class='xlistbox-item xlistbox-item-selected' data-options='{"value":"worker","label":"Исполнители","selected":true,"movable":true}'>
-    <div class='xlistbox-item-label'>
-      <div class='xlistbox-item-checkbox'>
-        <div class='xlistbox-item-flag'></div>
-      </div>
-      <div class='xlistbox-item-labeltext'>Исполнители</div>
-    </div>
-    <div class='xlistbox-item-direction'>
-      <div class='xlistbox-item-forward'>↑</div>
-      <div class='xlistbox-item-backward'>↓</div>
-      </div>
-  </li>
-  <li class='xlistbox-item xlistbox-item-selected' data-options='{"value":"element","label":"Элемент","selected":false,"movable":true}'>
-    <div class='xlistbox-item-label'>
-      <div class='xlistbox-item-checkbox'>
-        <div class='xlistbox-item-flag'></div>
-      </div>
-      <div class='xlistbox-item-labeltext'>Элемент</div>
-    </div>
-    <div class='xlistbox-item-direction'>
-      <div class='xlistbox-item-forward'>↑</div>
-      <div class='xlistbox-item-backward'>↓</div>
-      </div>
-  </li>
-  <li class='xlistbox-item xlistbox-item-selected' data-options='{"value":"order","label":"Заказы","selected":true}'>
-    <div class='xlistbox-item-label'>
-      <div class='xlistbox-item-checkbox'>
-        <div class='xlistbox-item-flag'></div>
-      </div>
-      <div class='xlistbox-item-labeltext'>Заказы</div>
-    </div>
-    <div class='xlistbox-item-direction'>
-      <div class='xlistbox-item-forward'>↑</div>
-      <div class='xlistbox-item-backward'>↓</div>
-      </div>
-  </li>
-</ul>
     </div>
 <div>
 

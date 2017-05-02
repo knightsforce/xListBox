@@ -134,10 +134,10 @@ function getOptionsFromDOM(elem) {
 	var dataOptions = elem.attr("data-options") || "{}";
 	dataOptions = JSON.parse(dataOptions);
 
-	(typeof dataOptions.selectable !== "boolean") && (dataOptions.selectable = this.attr("selectable"));
-	(typeof dataOptions.movable !== "boolean") && (dataOptions.movable = this.attr("movable"));
-	(typeof dataOptions.disabled !== "boolean") && (dataOptions.disabled = this.attr("disabled"));
-	(typeof dataOptions.multiselect !== "boolean") && (dataOptions.multiselect = this.attr("multiselect"));
+	(typeof dataOptions.selectable !== "boolean") && (dataOptions.selectable = elem.attr("selectable"));
+	(typeof dataOptions.movable !== "boolean") && (dataOptions.movable = elem.attr("movable"));
+	(typeof dataOptions.disabled !== "boolean") && (dataOptions.disabled = elem.attr("disabled"));
+	(typeof dataOptions.multiselect !== "boolean") && (dataOptions.multiselect = elem.attr("multiselect"));
 	
 	return dataOptions;
 }
@@ -152,9 +152,9 @@ function parseDataFromDOM(el) {//dataOption
 		item = $(item);
 		options["dataOptions"] = item.attr("data-options") || {};
 
-		(typeof options.selected !== "boolean") && (dataOptions.selected = this.attr("selected"));
-		(typeof options.disabled !== "boolean") && (dataOptions.disabled = this.attr("disabled"));
-		(typeof options.movable !== "boolean") && (dataOptions.movable = this.attr("movable"));
+		(typeof options.selected !== "boolean") && (options.selected = item.attr("selected"));
+		(typeof options.disabled !== "boolean") && (options.disabled = item.attr("disabled"));
+		(typeof options.movable !== "boolean") && (options.movable = item.attr("movable"));
 		
 		options.label = item.find(".xlistbox-labeltext").html();//Можно .text(), но тогда теги не будут учитываться
 		data.push(options);

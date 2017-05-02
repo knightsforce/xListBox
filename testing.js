@@ -1,4 +1,11 @@
 (function($){
+	
+	var originList2 = $("#originList2");
+	var xlistboxList1 = originList2.clone();
+	var xlistboxList2 = originList2.clone();
+	var xlistboxList3 = originList2.clone();
+	var xlistboxList4 = originList2.clone();
+	var xlistboxList5 = originList2.clone();
 
 	var createData1 = {
 		selectable: true,
@@ -41,40 +48,45 @@
 		multiselect: true,
 	};
 
-	$("#originList1").xListBox(createData2).xListBox("option", {
+	xlistboxList1.xListBox(createData2).xListBox("option", {
 		selectable: true,
 		movable: false,
 		disabled: false,
 		multiselect: true,
-	});
+	})
+	.appendTo("#tb1");
 
-		$("#originList2").xListBox(createData1).xListBox("option", {
+	xlistboxList2.xListBox(createData1).xListBox("option", {
 		selectable: true,
 		movable: false,
 		disabled: false,
 		multiselect: true,
-	});
+	})
+	.appendTo("#tb2");
 
-		$("#originList3").xListBox(createData1).xListBox("option", {
+	xlistboxList3.xListBox(createData1).xListBox("option", {
 		selectable: false,
 		movable: true,
 		disabled: false,
 		multiselect: true,
-	});
+	})
+	.appendTo("#tb3");
 	
-		$("#originList4").xListBox(createData1).xListBox("option", {
+	xlistboxList4.xListBox(createData1).xListBox("option", {
 		selectable: true,
 		movable: true,
 		disabled: true,
 		multiselect: true,
-	});
+	})
+	.appendTo("#tb4");
 
-		$("#originList5").xListBox(createData1).xListBox("option", {
+	xlistboxList5.xListBox(createData1).xListBox("option", {
 		selectable: true,
 		movable: true,
 		disabled: false,
 		multiselect: false,
-	});
+	})
+	.appendTo("#tb5");
 	/*.on("change", function(e){console.log($(this).xListBox('items'));})
 	.on("select", function(e){console.log("select")})
 */
