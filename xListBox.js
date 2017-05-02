@@ -92,11 +92,10 @@ var methods = {
 
 jQuery.fn.xListBox = function(method) {
 	var currentElem = this;
-	if(!currentElem.hasClass("xlistbox") || !methods) {
+	if(currentElem.get(0).tagName != "UL" || !methods) {
 		return currentElem;
 	}
-
-	var xlistboxItems = currentElem.find(".xlistbox-item");
+	var xlistboxItems = currentElem.find("li");
 
 	switch(getType(method)) {
 		case "string":
