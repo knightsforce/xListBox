@@ -1,13 +1,13 @@
 (function($){
-	var listbox1 = $("#originList");
-	var xlistboxList1 = listbox1.clone();
-	var xlistboxList2 = listbox1.clone();
-	var xlistboxList3 = listbox1.clone();
-	var xlistboxList4 = listbox1.clone();
-	var xlistboxList5 = listbox1.clone();
+	
+	var xlistboxList1 = $("#originList1").clone();
+	var xlistboxList2 = $("#originList2").clone();
+	var xlistboxList3 = $("#originList3").clone();
+	var xlistboxList4 = $("#originList4").clone();
+	var xlistboxList5 = $("#originList5").clone();
 
 	var arrList = [xlistboxList1, xlistboxList2, xlistboxList3, xlistboxList4, xlistboxList5];
-	var xlistboxList1 = listbox1.clone();
+
 	$("#cont1").append(xlistboxList1);
 	$("#cont2").append(xlistboxList2);
 	$("#cont3").append(xlistboxList3);
