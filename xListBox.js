@@ -19,6 +19,7 @@ var methods = {
 				}
 				break;
 			case "object":
+
 				var data = this.data();
 				var obj = key;
 				for(var i in obj) {
@@ -146,6 +147,7 @@ function parseDataFromDOM(el) {//dataOption
 };
 
 function createList(data, elem) {
+
 	var options = data.options || data;
 	var xlistboxOptions = JSON.stringify(options);
 	delete data.options;
@@ -188,7 +190,7 @@ function rerenderList(elem, items) {
 
 	if(items) {
 		data.items = items;
-	} else if(!data.items.length){
+	} else if(!data.items){
 		data.items = parseDataFromDOM(elem);
 	}
 
@@ -221,7 +223,6 @@ function createElems(data) {
 	var parentMovable = data["movable"];
 	var movable = null;
 	var text = null;
-
 	var _li, _label;
 
 	var items = data.items;
@@ -280,7 +281,7 @@ function handlerClick(e) {
 	var currentItem = $(target).closest(".xlistbox-item");
 	var parentList = currentItem.closest(".xlistbox");
 
-	var parentOptions = parentList.data() || {};
+	var parentOptions = parentList.data();
 
 	var allItems = parentList.find(".xlistbox-item");
 	var itemsArray = parentOptions.items;
@@ -330,7 +331,6 @@ function handlerClick(e) {
 
 		if(!multiselect) {
 			var currentElemDOM = currentItem.get(0);
-			console.log(currentElemDOM)
 			itemsSelected.filter(function(i, item) {
 				if(item==currentElemDOM) return false;
 				return true;
@@ -365,56 +365,6 @@ function handlerClick(e) {
 
 })(jQuery);
 
-var createData1 = {
-	selectable: true,
-	movable: true,
-	disabled: false,
-	multiselect: true,
-	items: [
-		{
-			value: "category",
-			label: "Категории",
-			selected: true,
-			disabled: true,
-			movable: true,
-		},
-		{
-			value: "worker",
-			label: "Исполнители",
-			selected: true,
-			movable: true,
-		},
-		{
-			value: "element disble",
-			label: "Элемент",
-			selected: false,
-			movable: true,
-		},
-		{
-			value: "order",
-			label: "Заказы",
-			selected: true,
-			movable: undefined,
-		}
-	]
-}
-
-var createData2 = {
-	selectable: true,
-	movable: true,
-	disabled: false,
-	multiselect: true,
-};
-
-var l = $(".listbox1").xListBox(createData1);
-/*
-	var l = $(".listbox1, .listbox2").xListBox(createData2); - работает,
-	но с createData2 нет, т.к. программные опции приоритетнее
-*/
-l.on("change", function(e){console.log($(this).xListBox('items'));})
-.on("select", function(e){console.log("select")})
-.appendTo("body");
-
 /*
 Тест option
 console.log(l.xListBox("option", "disabled"));
@@ -433,8 +383,6 @@ console.log(items);
 l.xListBox("items", items);
 */
 
-var items = l.xListBox("items");//Написано, что возвращать в формате items
-console.log(items);
 /*
 Тест getSelected
 console.log(l.xListBox("getSelected"));
