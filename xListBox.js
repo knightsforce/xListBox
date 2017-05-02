@@ -115,6 +115,7 @@ jQuery.fn.xListBox = function(method) {
 					$.merge(data.items, parseDataFromDOM($(item)));
 				});
 			}
+
 			result = initList(data);
 			this.after(result);
 			this.remove();
@@ -125,12 +126,20 @@ jQuery.fn.xListBox = function(method) {
 
 };
 
-function initList(data) {
+function initList(data, elem) {
 	return createList(data);
 }
 
 function getOptionsFromDOM(elem) {
-	return JSON.parse(elem.attr("data-options"));
+	var dataOptions = elem.attr("data-options") || "{}";
+	dataOptions = JSON.parse(dataOptions);
+
+	(typeof dataOptions.selectable !== "boolean") && (dataOptions.selectable = this.attr("selectable"));
+	(typeof dataOptions.movable !== "boolean") && (dataOptions.movable = this.attr("movable"));
+	(typeof dataOptions.disabled !== "boolean") && (dataOptions.disabled = this.attr("disabled"));
+	(typeof dataOptions.multiselect !== "boolean") && (dataOptions.multiselect = this.attr("multiselect"));
+	
+	return dataOptions;
 }
 
 function parseDataFromDOM(el) {//dataOption
@@ -141,10 +150,16 @@ function parseDataFromDOM(el) {//dataOption
 	listItem.each(function(i, item) {
 		options = $.extend({}, $(item).data());
 		item = $(item);
-		options["dataOptions"] = item.attr("data-options");
+		options["dataOptions"] = item.attr("data-options") || {};
+
+		(typeof options.selected !== "boolean") && (dataOptions.selected = this.attr("selected"));
+		(typeof options.disabled !== "boolean") && (dataOptions.disabled = this.attr("disabled"));
+		(typeof options.movable !== "boolean") && (dataOptions.movable = this.attr("movable"));
+		
 		options.label = item.find(".xlistbox-labeltext").html();//Можно .text(), но тогда теги не будут учитываться
 		data.push(options);
 	});
+
 	/*
 		Не children, потому что могут быть обертки из div, мало ли.
 		Это не нарушает логику плагина

@@ -72,8 +72,9 @@
 <h2>ПЕРВЫЙ созданный список - построен на базе данных из оригинальноо списка, ОСТАЛЬНЫЕ - программно</h2>
 
 <div id="tb1" class="testBlock">
-  <h2>Исходный список:</h2>
-<ul id = "originList1" class="xlistbox listbox1" data-options='{"selectable":true,"movable":true,"disabled":false,"multiselect":true,"items":[{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true},{"value":"worker","label":"Исполнители","selected":true,"movable":true},{"value":"element disble","label":"Элемент","selected":false,"movable":true},{"value":"order","label":"Заказы","selected":true}]}'>
+
+<h2>Исходный список:</h2>
+<ul class="xlistbox listbox1" data-options='{"selectable":true,"movable":true,"disabled":false,"multiselect":true,"items":[{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true},{"value":"worker","label":"Исполнители","selected":true,"movable":true},{"value":"element disble","label":"Элемент","selected":false,"movable":true},{"value":"order","label":"Заказы","selected":true}]}'>
   
   <li class='xlistbox-item xlistbox-item-disabled xlistbox-item-selected" data-options="{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true}'>
        <div class="xlistbox-item-label">
@@ -127,57 +128,12 @@
 
 <h5>HTML разметка:</h5>
     <p class="markup">
-        &#60;ul id = "originList" class="xlistbox listbox1" data-options='{"selectable":true,"movable":true,"disabled":false,"multiselect":true,"items":[{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true},{"value":"worker","label":"Исполнители","selected":true,"movable":true},{"value":"element disble","label":"Элемент","selected":false,"movable":true},{"value":"order","label":"Заказы","selected":true}]}'&#62;
-  
-  &#60;li class='xlistbox-item xlistbox-item-disabled xlistbox-item-selected" data-options="{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true}'&#62;
-       &#60;div class="xlistbox-item-label"&#62;
-        &#60;div class="xlistbox-item-checkbox"&#62;
-          &#60;div class="xlistbox-item-flag"&#62;&#60;/div&#62;
-        &#60;/div&#62;
-        &#60;div class="xlistbox-item-labeltext"&#62;Категории&#60;/div&#62;
-       &#60;/div&#62;
-       &#60;div class="xlistbox-item-direction"&#62;
-        &#60;div class="xlistbox-item-forward"&#62;↑&#60;/div&#62;
-        &#60;div class="xlistbox-item-backward"&#62;↓&#60;/div&#62;
-       &#60;/div&#62;
-  &#60;/li&#62;
-  &#60;li class='xlistbox-item xlistbox-item-selected' data-options='{"value":"worker","label":"Исполнители","selected":true,"movable":true}'&#62;
-    &#60;div class='xlistbox-item-label'&#62;
-      &#60;div class='xlistbox-item-checkbox'&#62;
-        &#60;div class='xlistbox-item-flag'&#62;&#60;/div&#62;
-      &#60;/div&#62;
-      &#60;div class='xlistbox-item-labeltext'&#62;Исполнители&#60;/div&#62;
-    &#60;/div&#62;
-    &#60;div class='xlistbox-item-direction'&#62;
-      &#60;div class='xlistbox-item-forward'&#62;↑&#60;/div&#62;
-      &#60;div class='xlistbox-item-backward'&#62;↓&#60;/div&#62;
-      &#60;/div&#62;
-  &#60;/li&#62;
-  &#60;li class='xlistbox-item xlistbox-item-selected' data-options='{"value":"element","label":"Элемент","selected":false,"movable":true}'&#62;
-    &#60;div class='xlistbox-item-label'&#62;
-      &#60;div class='xlistbox-item-checkbox'&#62;
-        &#60;div class='xlistbox-item-flag'&#62;&#60;/div&#62;
-      &#60;/div&#62;
-      &#60;div class='xlistbox-item-labeltext'&#62;Элемент&#60;/div&#62;
-    &#60;/div&#62;
-    &#60;div class='xlistbox-item-direction'&#62;
-      &#60;div class='xlistbox-item-forward'&#62;↑&#60;/div&#62;
-      &#60;div class='xlistbox-item-backward'&#62;↓&#60;/div&#62;
-      &#60;/div&#62;
-  &#60;/li&#62;
-  &#60;li class='xlistbox-item xlistbox-item-selected' data-options='{"value":"order","label":"Заказы","selected":true}'&#62;
-    &#60;div class='xlistbox-item-label'&#62;
-      &#60;div class='xlistbox-item-checkbox'&#62;
-        &#60;div class='xlistbox-item-flag'&#62;&#60;/div&#62;
-      &#60;/div&#62;
-      &#60;div class='xlistbox-item-labeltext'&#62;Заказы&#60;/div&#62;
-    &#60;/div&#62;
-    &#60;div class='xlistbox-item-direction'&#62;
-      &#60;div class='xlistbox-item-forward'&#62;↑&#60;/div&#62;
-      &#60;div class='xlistbox-item-backward'&#62;↓&#60;/div&#62;
-      &#60;/div&#62;
-  &#60;/li&#62;
-&#60;/ul&#62;
+    &#60;ul class=”listbox1”&#62;
+      &#60;li value=”category” selected>Категории&#60;/li&#62;
+      &#60;li value=”worker”>Исполнители&#60;/li&#62;
+      &#60;li value=”disabled” selected disabled>Элемент выключен&#60;/li&#62;
+      &#60;li value=”order” selected>Заказы&#60;/li&#62;
+    &#60;/ul&#62;
     </p>
 
     <div id="cont1" class="container">
@@ -186,12 +142,7 @@
       <h5>movable = false</h5>
       <h5>disabled = false</h5>
       <h5>multiselect = true</h5>
-    </div>
-</div>
-
-  <div id="tb2" class="testBlock">
-  <h2>Исходный список:</h2>
-<ul id = "originList2" class="xlistbox listbox1" data-options='{"selectable":true,"movable":true,"disabled":false,"multiselect":true,"items":[{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true},{"value":"worker","label":"Исполнители","selected":true,"movable":true},{"value":"element disble","label":"Элемент","selected":false,"movable":true},{"value":"order","label":"Заказы","selected":true}]}'>
+      <ul id = "originList1" class="xlistbox listbox1" data-options='{"selectable":true,"movable":true,"disabled":false,"multiselect":true,"items":[{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true},{"value":"worker","label":"Исполнители","selected":true,"movable":true},{"value":"element disble","label":"Элемент","selected":false,"movable":true},{"value":"order","label":"Заказы","selected":true}]}'>
   
   <li class='xlistbox-item xlistbox-item-disabled xlistbox-item-selected" data-options="{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true}'>
        <div class="xlistbox-item-label">
@@ -242,77 +193,17 @@
       </div>
   </li>
 </ul>
+    </div>
+</div>
 
-<h5>HTML разметка:</h5>
-    <p class="markup">
-        &#60;ul id = "originList" class="xlistbox listbox1" data-options='{"selectable":true,"movable":true,"disabled":false,"multiselect":true,"items":[{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true},{"value":"worker","label":"Исполнители","selected":true,"movable":true},{"value":"element disble","label":"Элемент","selected":false,"movable":true},{"value":"order","label":"Заказы","selected":true}]}'&#62;
-  
-  &#60;li class='xlistbox-item xlistbox-item-disabled xlistbox-item-selected" data-options="{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true}'&#62;
-       &#60;div class="xlistbox-item-label"&#62;
-        &#60;div class="xlistbox-item-checkbox"&#62;
-          &#60;div class="xlistbox-item-flag"&#62;&#60;/div&#62;
-        &#60;/div&#62;
-        &#60;div class="xlistbox-item-labeltext"&#62;Категории&#60;/div&#62;
-       &#60;/div&#62;
-       &#60;div class="xlistbox-item-direction"&#62;
-        &#60;div class="xlistbox-item-forward"&#62;↑&#60;/div&#62;
-        &#60;div class="xlistbox-item-backward"&#62;↓&#60;/div&#62;
-       &#60;/div&#62;
-  &#60;/li&#62;
-  &#60;li class='xlistbox-item xlistbox-item-selected' data-options='{"value":"worker","label":"Исполнители","selected":true,"movable":true}'&#62;
-    &#60;div class='xlistbox-item-label'&#62;
-      &#60;div class='xlistbox-item-checkbox'&#62;
-        &#60;div class='xlistbox-item-flag'&#62;&#60;/div&#62;
-      &#60;/div&#62;
-      &#60;div class='xlistbox-item-labeltext'&#62;Исполнители&#60;/div&#62;
-    &#60;/div&#62;
-    &#60;div class='xlistbox-item-direction'&#62;
-      &#60;div class='xlistbox-item-forward'&#62;↑&#60;/div&#62;
-      &#60;div class='xlistbox-item-backward'&#62;↓&#60;/div&#62;
-      &#60;/div&#62;
-  &#60;/li&#62;
-  &#60;li class='xlistbox-item xlistbox-item-selected' data-options='{"value":"element","label":"Элемент","selected":false,"movable":true}'&#62;
-    &#60;div class='xlistbox-item-label'&#62;
-      &#60;div class='xlistbox-item-checkbox'&#62;
-        &#60;div class='xlistbox-item-flag'&#62;&#60;/div&#62;
-      &#60;/div&#62;
-      &#60;div class='xlistbox-item-labeltext'&#62;Элемент&#60;/div&#62;
-    &#60;/div&#62;
-    &#60;div class='xlistbox-item-direction'&#62;
-      &#60;div class='xlistbox-item-forward'&#62;↑&#60;/div&#62;
-      &#60;div class='xlistbox-item-backward'&#62;↓&#60;/div&#62;
-      &#60;/div&#62;
-  &#60;/li&#62;
-  &#60;li class='xlistbox-item xlistbox-item-selected' data-options='{"value":"order","label":"Заказы","selected":true}'&#62;
-    &#60;div class='xlistbox-item-label'&#62;
-      &#60;div class='xlistbox-item-checkbox'&#62;
-        &#60;div class='xlistbox-item-flag'&#62;&#60;/div&#62;
-      &#60;/div&#62;
-      &#60;div class='xlistbox-item-labeltext'&#62;Заказы&#60;/div&#62;
-    &#60;/div&#62;
-    &#60;div class='xlistbox-item-direction'&#62;
-      &#60;div class='xlistbox-item-forward'&#62;↑&#60;/div&#62;
-      &#60;div class='xlistbox-item-backward'&#62;↓&#60;/div&#62;
-      &#60;/div&#62;
-  &#60;/li&#62;
-&#60;/ul&#62;
-    </p>
-
+  <div id="tb2" class="testBlock">
     <div id="cont2" class="container">
       <h3>Список 2. Создан программно. Опции:</h3>
       <h5>selectable = true</h5>
       <h5>movable = false</h5>
       <h5>disabled = false</h5>
       <h5>multiselect = true</h5>
-      <h5>Пример исходной разметки</h5>
-
-    </div>
-</div>
-
-
-  <div id="tb3" class="testBlock">
-  <h2>Исходный список:</h2>
-<ul id = "originList3" class="xlistbox listbox1" data-options='{"selectable":true,"movable":true,"disabled":false,"multiselect":true,"items":[{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true},{"value":"worker","label":"Исполнители","selected":true,"movable":true},{"value":"element disble","label":"Элемент","selected":false,"movable":true},{"value":"order","label":"Заказы","selected":true}]}'>
+    <ul id = "originList2" class="xlistbox listbox1" data-options='{"selectable":true,"movable":true,"disabled":false,"multiselect":true,"items":[{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true},{"value":"worker","label":"Исполнители","selected":true,"movable":true},{"value":"element disble","label":"Элемент","selected":false,"movable":true},{"value":"order","label":"Заказы","selected":true}]}'>
   
   <li class='xlistbox-item xlistbox-item-disabled xlistbox-item-selected" data-options="{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true}'>
        <div class="xlistbox-item-label">
@@ -363,74 +254,18 @@
       </div>
   </li>
 </ul>
+    </div>
+</div>
 
-<h5>HTML разметка:</h5>
-    <p class="markup">
-        &#60;ul id = "originList" class="xlistbox listbox1" data-options='{"selectable":true,"movable":true,"disabled":false,"multiselect":true,"items":[{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true},{"value":"worker","label":"Исполнители","selected":true,"movable":true},{"value":"element disble","label":"Элемент","selected":false,"movable":true},{"value":"order","label":"Заказы","selected":true}]}'&#62;
-  
-  &#60;li class='xlistbox-item xlistbox-item-disabled xlistbox-item-selected" data-options="{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true}'&#62;
-       &#60;div class="xlistbox-item-label"&#62;
-        &#60;div class="xlistbox-item-checkbox"&#62;
-          &#60;div class="xlistbox-item-flag"&#62;&#60;/div&#62;
-        &#60;/div&#62;
-        &#60;div class="xlistbox-item-labeltext"&#62;Категории&#60;/div&#62;
-       &#60;/div&#62;
-       &#60;div class="xlistbox-item-direction"&#62;
-        &#60;div class="xlistbox-item-forward"&#62;↑&#60;/div&#62;
-        &#60;div class="xlistbox-item-backward"&#62;↓&#60;/div&#62;
-       &#60;/div&#62;
-  &#60;/li&#62;
-  &#60;li class='xlistbox-item xlistbox-item-selected' data-options='{"value":"worker","label":"Исполнители","selected":true,"movable":true}'&#62;
-    &#60;div class='xlistbox-item-label'&#62;
-      &#60;div class='xlistbox-item-checkbox'&#62;
-        &#60;div class='xlistbox-item-flag'&#62;&#60;/div&#62;
-      &#60;/div&#62;
-      &#60;div class='xlistbox-item-labeltext'&#62;Исполнители&#60;/div&#62;
-    &#60;/div&#62;
-    &#60;div class='xlistbox-item-direction'&#62;
-      &#60;div class='xlistbox-item-forward'&#62;↑&#60;/div&#62;
-      &#60;div class='xlistbox-item-backward'&#62;↓&#60;/div&#62;
-      &#60;/div&#62;
-  &#60;/li&#62;
-  &#60;li class='xlistbox-item xlistbox-item-selected' data-options='{"value":"element","label":"Элемент","selected":false,"movable":true}'&#62;
-    &#60;div class='xlistbox-item-label'&#62;
-      &#60;div class='xlistbox-item-checkbox'&#62;
-        &#60;div class='xlistbox-item-flag'&#62;&#60;/div&#62;
-      &#60;/div&#62;
-      &#60;div class='xlistbox-item-labeltext'&#62;Элемент&#60;/div&#62;
-    &#60;/div&#62;
-    &#60;div class='xlistbox-item-direction'&#62;
-      &#60;div class='xlistbox-item-forward'&#62;↑&#60;/div&#62;
-      &#60;div class='xlistbox-item-backward'&#62;↓&#60;/div&#62;
-      &#60;/div&#62;
-  &#60;/li&#62;
-  &#60;li class='xlistbox-item xlistbox-item-selected' data-options='{"value":"order","label":"Заказы","selected":true}'&#62;
-    &#60;div class='xlistbox-item-label'&#62;
-      &#60;div class='xlistbox-item-checkbox'&#62;
-        &#60;div class='xlistbox-item-flag'&#62;&#60;/div&#62;
-      &#60;/div&#62;
-      &#60;div class='xlistbox-item-labeltext'&#62;Заказы&#60;/div&#62;
-    &#60;/div&#62;
-    &#60;div class='xlistbox-item-direction'&#62;
-      &#60;div class='xlistbox-item-forward'&#62;↑&#60;/div&#62;
-      &#60;div class='xlistbox-item-backward'&#62;↓&#60;/div&#62;
-      &#60;/div&#62;
-  &#60;/li&#62;
-&#60;/ul&#62;
-    </p>
 
+  <div id="tb3" class="testBlock">
     <div id="cont3" class="container">
       <h3>Список 3. Создан программно. Опции:</h3>
       <h5>selectable = false</h5>
       <h5>movable = true</h5>
       <h5>disabled = false</h5>
       <h5>multiselect = true (не играет роли, т.к. selectable = false)</h5>
-    </div>
-</div>
-
-  <div id="tb4" class="testBlock">
-  <h2>Исходный список:</h2>
-<ul id = "originList4" class="xlistbox listbox1" data-options='{"selectable":true,"movable":true,"disabled":false,"multiselect":true,"items":[{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true},{"value":"worker","label":"Исполнители","selected":true,"movable":true},{"value":"element disble","label":"Элемент","selected":false,"movable":true},{"value":"order","label":"Заказы","selected":true}]}'>
+      <ul id = "originList3" class="xlistbox listbox1" data-options='{"selectable":true,"movable":true,"disabled":false,"multiselect":true,"items":[{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true},{"value":"worker","label":"Исполнители","selected":true,"movable":true},{"value":"element disble","label":"Элемент","selected":false,"movable":true},{"value":"order","label":"Заказы","selected":true}]}'>
   
   <li class='xlistbox-item xlistbox-item-disabled xlistbox-item-selected" data-options="{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true}'>
        <div class="xlistbox-item-label">
@@ -481,74 +316,17 @@
       </div>
   </li>
 </ul>
+    </div>
+</div>
 
-<h5>HTML разметка:</h5>
-    <p class="markup">
-        &#60;ul id = "originList" class="xlistbox listbox1" data-options='{"selectable":true,"movable":true,"disabled":false,"multiselect":true,"items":[{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true},{"value":"worker","label":"Исполнители","selected":true,"movable":true},{"value":"element disble","label":"Элемент","selected":false,"movable":true},{"value":"order","label":"Заказы","selected":true}]}'&#62;
-  
-  &#60;li class='xlistbox-item xlistbox-item-disabled xlistbox-item-selected" data-options="{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true}'&#62;
-       &#60;div class="xlistbox-item-label"&#62;
-        &#60;div class="xlistbox-item-checkbox"&#62;
-          &#60;div class="xlistbox-item-flag"&#62;&#60;/div&#62;
-        &#60;/div&#62;
-        &#60;div class="xlistbox-item-labeltext"&#62;Категории&#60;/div&#62;
-       &#60;/div&#62;
-       &#60;div class="xlistbox-item-direction"&#62;
-        &#60;div class="xlistbox-item-forward"&#62;↑&#60;/div&#62;
-        &#60;div class="xlistbox-item-backward"&#62;↓&#60;/div&#62;
-       &#60;/div&#62;
-  &#60;/li&#62;
-  &#60;li class='xlistbox-item xlistbox-item-selected' data-options='{"value":"worker","label":"Исполнители","selected":true,"movable":true}'&#62;
-    &#60;div class='xlistbox-item-label'&#62;
-      &#60;div class='xlistbox-item-checkbox'&#62;
-        &#60;div class='xlistbox-item-flag'&#62;&#60;/div&#62;
-      &#60;/div&#62;
-      &#60;div class='xlistbox-item-labeltext'&#62;Исполнители&#60;/div&#62;
-    &#60;/div&#62;
-    &#60;div class='xlistbox-item-direction'&#62;
-      &#60;div class='xlistbox-item-forward'&#62;↑&#60;/div&#62;
-      &#60;div class='xlistbox-item-backward'&#62;↓&#60;/div&#62;
-      &#60;/div&#62;
-  &#60;/li&#62;
-  &#60;li class='xlistbox-item xlistbox-item-selected' data-options='{"value":"element","label":"Элемент","selected":false,"movable":true}'&#62;
-    &#60;div class='xlistbox-item-label'&#62;
-      &#60;div class='xlistbox-item-checkbox'&#62;
-        &#60;div class='xlistbox-item-flag'&#62;&#60;/div&#62;
-      &#60;/div&#62;
-      &#60;div class='xlistbox-item-labeltext'&#62;Элемент&#60;/div&#62;
-    &#60;/div&#62;
-    &#60;div class='xlistbox-item-direction'&#62;
-      &#60;div class='xlistbox-item-forward'&#62;↑&#60;/div&#62;
-      &#60;div class='xlistbox-item-backward'&#62;↓&#60;/div&#62;
-      &#60;/div&#62;
-  &#60;/li&#62;
-  &#60;li class='xlistbox-item xlistbox-item-selected' data-options='{"value":"order","label":"Заказы","selected":true}'&#62;
-    &#60;div class='xlistbox-item-label'&#62;
-      &#60;div class='xlistbox-item-checkbox'&#62;
-        &#60;div class='xlistbox-item-flag'&#62;&#60;/div&#62;
-      &#60;/div&#62;
-      &#60;div class='xlistbox-item-labeltext'&#62;Заказы&#60;/div&#62;
-    &#60;/div&#62;
-    &#60;div class='xlistbox-item-direction'&#62;
-      &#60;div class='xlistbox-item-forward'&#62;↑&#60;/div&#62;
-      &#60;div class='xlistbox-item-backward'&#62;↓&#60;/div&#62;
-      &#60;/div&#62;
-  &#60;/li&#62;
-&#60;/ul&#62;
-    </p>
-
+  <div id="tb4" class="testBlock">
     <div id="cont4" class="container">
       <h3>Список 4. Создан программно. Опции:</h3>
       <h5>selectable = true</h5>
       <h5>movable = true</h5>
       <h5>disabled = true (интерактив отсутствует)</h5>
       <h5>multiselect = true</h5>
-    </div>
-</div>
-
-  <div id="tb5" class="testBlock">
-  <h2>Исходный список:</h2>
-<ul id = "originList5" class="xlistbox listbox1" data-options='{"selectable":true,"movable":true,"disabled":false,"multiselect":true,"items":[{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true},{"value":"worker","label":"Исполнители","selected":true,"movable":true},{"value":"element disble","label":"Элемент","selected":false,"movable":true},{"value":"order","label":"Заказы","selected":true}]}'>
+      <ul id = "originList4" class="xlistbox listbox1" data-options='{"selectable":true,"movable":true,"disabled":false,"multiselect":true,"items":[{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true},{"value":"worker","label":"Исполнители","selected":true,"movable":true},{"value":"element disble","label":"Элемент","selected":false,"movable":true},{"value":"order","label":"Заказы","selected":true}]}'>
   
   <li class='xlistbox-item xlistbox-item-disabled xlistbox-item-selected" data-options="{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true}'>
        <div class="xlistbox-item-label">
@@ -599,68 +377,67 @@
       </div>
   </li>
 </ul>
+    </div>
+</div>
 
-<h5>HTML разметка:</h5>
-    <p class="markup">
-        &#60;ul id = "originList" class="xlistbox listbox1" data-options='{"selectable":true,"movable":true,"disabled":false,"multiselect":true,"items":[{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true},{"value":"worker","label":"Исполнители","selected":true,"movable":true},{"value":"element disble","label":"Элемент","selected":false,"movable":true},{"value":"order","label":"Заказы","selected":true}]}'&#62;
-  
-  &#60;li class='xlistbox-item xlistbox-item-disabled xlistbox-item-selected" data-options="{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true}'&#62;
-       &#60;div class="xlistbox-item-label"&#62;
-        &#60;div class="xlistbox-item-checkbox"&#62;
-          &#60;div class="xlistbox-item-flag"&#62;&#60;/div&#62;
-        &#60;/div&#62;
-        &#60;div class="xlistbox-item-labeltext"&#62;Категории&#60;/div&#62;
-       &#60;/div&#62;
-       &#60;div class="xlistbox-item-direction"&#62;
-        &#60;div class="xlistbox-item-forward"&#62;↑&#60;/div&#62;
-        &#60;div class="xlistbox-item-backward"&#62;↓&#60;/div&#62;
-       &#60;/div&#62;
-  &#60;/li&#62;
-  &#60;li class='xlistbox-item xlistbox-item-selected' data-options='{"value":"worker","label":"Исполнители","selected":true,"movable":true}'&#62;
-    &#60;div class='xlistbox-item-label'&#62;
-      &#60;div class='xlistbox-item-checkbox'&#62;
-        &#60;div class='xlistbox-item-flag'&#62;&#60;/div&#62;
-      &#60;/div&#62;
-      &#60;div class='xlistbox-item-labeltext'&#62;Исполнители&#60;/div&#62;
-    &#60;/div&#62;
-    &#60;div class='xlistbox-item-direction'&#62;
-      &#60;div class='xlistbox-item-forward'&#62;↑&#60;/div&#62;
-      &#60;div class='xlistbox-item-backward'&#62;↓&#60;/div&#62;
-      &#60;/div&#62;
-  &#60;/li&#62;
-  &#60;li class='xlistbox-item xlistbox-item-selected' data-options='{"value":"element","label":"Элемент","selected":false,"movable":true}'&#62;
-    &#60;div class='xlistbox-item-label'&#62;
-      &#60;div class='xlistbox-item-checkbox'&#62;
-        &#60;div class='xlistbox-item-flag'&#62;&#60;/div&#62;
-      &#60;/div&#62;
-      &#60;div class='xlistbox-item-labeltext'&#62;Элемент&#60;/div&#62;
-    &#60;/div&#62;
-    &#60;div class='xlistbox-item-direction'&#62;
-      &#60;div class='xlistbox-item-forward'&#62;↑&#60;/div&#62;
-      &#60;div class='xlistbox-item-backward'&#62;↓&#60;/div&#62;
-      &#60;/div&#62;
-  &#60;/li&#62;
-  &#60;li class='xlistbox-item xlistbox-item-selected' data-options='{"value":"order","label":"Заказы","selected":true}'&#62;
-    &#60;div class='xlistbox-item-label'&#62;
-      &#60;div class='xlistbox-item-checkbox'&#62;
-        &#60;div class='xlistbox-item-flag'&#62;&#60;/div&#62;
-      &#60;/div&#62;
-      &#60;div class='xlistbox-item-labeltext'&#62;Заказы&#60;/div&#62;
-    &#60;/div&#62;
-    &#60;div class='xlistbox-item-direction'&#62;
-      &#60;div class='xlistbox-item-forward'&#62;↑&#60;/div&#62;
-      &#60;div class='xlistbox-item-backward'&#62;↓&#60;/div&#62;
-      &#60;/div&#62;
-  &#60;/li&#62;
-&#60;/ul&#62;
-    </p>
-
+  <div id="tb5" class="testBlock">
     <div id="cont5" class="container">
       <h3>Список 5. Создан программно. Опции:</h3>
       <h5>selectable = true</h5>
       <h5>movable = true</h5>
       <h5>disabled = false</h5>
       <h5>multiselect = false</h5>
+      <ul id = "originList5" class="xlistbox listbox1" data-options='{"selectable":true,"movable":true,"disabled":false,"multiselect":true,"items":[{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true},{"value":"worker","label":"Исполнители","selected":true,"movable":true},{"value":"element disble","label":"Элемент","selected":false,"movable":true},{"value":"order","label":"Заказы","selected":true}]}'>
+  
+  <li class='xlistbox-item xlistbox-item-disabled xlistbox-item-selected" data-options="{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true}'>
+       <div class="xlistbox-item-label">
+        <div class="xlistbox-item-checkbox">
+          <div class="xlistbox-item-flag"></div>
+        </div>
+        <div class="xlistbox-item-labeltext">Категории</div>
+       </div>
+       <div class="xlistbox-item-direction">
+        <div class="xlistbox-item-forward">↑</div>
+        <div class="xlistbox-item-backward">↓</div>
+       </div>
+  </li>
+  <li class='xlistbox-item xlistbox-item-selected' data-options='{"value":"worker","label":"Исполнители","selected":true,"movable":true}'>
+    <div class='xlistbox-item-label'>
+      <div class='xlistbox-item-checkbox'>
+        <div class='xlistbox-item-flag'></div>
+      </div>
+      <div class='xlistbox-item-labeltext'>Исполнители</div>
+    </div>
+    <div class='xlistbox-item-direction'>
+      <div class='xlistbox-item-forward'>↑</div>
+      <div class='xlistbox-item-backward'>↓</div>
+      </div>
+  </li>
+  <li class='xlistbox-item xlistbox-item-selected' data-options='{"value":"element","label":"Элемент","selected":false,"movable":true}'>
+    <div class='xlistbox-item-label'>
+      <div class='xlistbox-item-checkbox'>
+        <div class='xlistbox-item-flag'></div>
+      </div>
+      <div class='xlistbox-item-labeltext'>Элемент</div>
+    </div>
+    <div class='xlistbox-item-direction'>
+      <div class='xlistbox-item-forward'>↑</div>
+      <div class='xlistbox-item-backward'>↓</div>
+      </div>
+  </li>
+  <li class='xlistbox-item xlistbox-item-selected' data-options='{"value":"order","label":"Заказы","selected":true}'>
+    <div class='xlistbox-item-label'>
+      <div class='xlistbox-item-checkbox'>
+        <div class='xlistbox-item-flag'></div>
+      </div>
+      <div class='xlistbox-item-labeltext'>Заказы</div>
+    </div>
+    <div class='xlistbox-item-direction'>
+      <div class='xlistbox-item-forward'>↑</div>
+      <div class='xlistbox-item-backward'>↓</div>
+      </div>
+  </li>
+</ul>
     </div>
 <div>
 
