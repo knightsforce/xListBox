@@ -372,4 +372,4 @@ function handlerClick(e) {
 	parentList.data(parentOptions);
 }
 
-})(jQuery);//
+})(jQuery);
