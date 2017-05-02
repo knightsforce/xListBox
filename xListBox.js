@@ -1,10 +1,4 @@
 (function($) {
-/*
-var allItems = parentList.find(".xlistbox-item");
-var itemsArray = parentOptions.items;
-	var index = allItems.index(currentItem);
-	var currEl = itemsArray[index];
-*/
 var methods = {
 	option: function(key, val) {
 		var result = null;
@@ -13,7 +7,7 @@ var methods = {
 			
 				if(val !== undefined) {
 					this.data(key, val);
-					result = rerenderList(this);
+					result = rerenderList(this, {save: true});
 				} else {
 					result = this.data(key);
 				}
@@ -26,7 +20,7 @@ var methods = {
 					data[i] = obj[i];
 				}
 				this.data(data);
-				result = rerenderList(this);
+				result = rerenderList(this, {save: true});
 				
 				break;
 			default:
@@ -38,7 +32,7 @@ var methods = {
     items: function(items) {
     	var result = null; 
     	if(getType(items) == "array") {
-    		result = rerenderList(this, items);
+    		result = rerenderList(this, {items: items});
     	} else {
     		result = this.data().items;
     	}
@@ -55,7 +49,7 @@ var methods = {
     	var itemsArr = this.data().items;
     	var result = this;
     	if(typeof value == "object") {
-    		value = value.data("value") || JSON.parse(value.attr("data-options"))["value"];
+    		value = value.data("value")
     	}
     	var options = null;
 		for(var i = 0; i<itemsArr.length; i++) {
@@ -83,7 +77,7 @@ var methods = {
 				options[key] = opt[key];
 			}
     	}
-    	data.items=itemsArr;//По ссылке, так что не обязательно, это на случай непредвиденног
+    	data.items=itemsArr;
     	this.data(data);
 
 		return rerenderList(this);
@@ -105,19 +99,20 @@ jQuery.fn.xListBox = function(method) {
 			if(getType(methods)!="object") return currentElem;
 			var data = this.data();
 			data = $.extend(getOptionsFromDOM(this), data, method);
-
 			if(!!data.items) {
+				data.saveDOM = false;
 				if(getType(data.items) != "array") throw "The data must be an array of objects";
 			} else {
 				data.items = [];
+				data.saveDOM = true;
 				currentElem.each(function(i, item) {
 					$.merge(data.items, parseDataFromDOM($(item)));
 				});
+
 			}
 
-			result = initList(data);
-			this.after(result);
-			this.remove();
+			result = initList(data, this);
+			this.on("click.xlistbox", handlerClick);
 			break;
 	}
 
@@ -126,7 +121,7 @@ jQuery.fn.xListBox = function(method) {
 };
 
 function initList(data, elem) {
-	return createList(data);
+	return createList(data, elem);
 }
 
 function getOptionsFromDOM(elem) {
@@ -137,47 +132,45 @@ function getOptionsFromDOM(elem) {
 	(typeof dataOptions.movable !== "boolean") && (dataOptions.movable = elem.attr("movable"));
 	(typeof dataOptions.disabled !== "boolean") && (dataOptions.disabled = elem.attr("disabled"));
 	(typeof dataOptions.multiselect !== "boolean") && (dataOptions.multiselect = elem.attr("multiselect"));
-	
+
 	return dataOptions;
 }
 
 function parseDataFromDOM(el) {//dataOption
 	var data = [];
 	var listItem = el.find("li");
+	var itemsArray = el.data().items;
 	var options = null;
 
 	listItem.each(function(i, item) {
-		options = $.extend({}, $(item).data());
+		options = {};
+		if(itemsArray) $.extend(options, itemsArray[i]);
 		item = $(item);
+		options["liElem"] = item;
+
 		options["dataOptions"] = item.attr("data-options") || {};
 
-		(typeof options.selected !== "boolean") && (options.selected = item.attr("selected"));
-		(typeof options.disabled !== "boolean") && (options.disabled = item.attr("disabled"));
-		(typeof options.movable !== "boolean") && (options.movable = item.attr("movable"));
-		
-		options.label = item.find(".xlistbox-labeltext").html();//Можно .text(), но тогда теги не будут учитываться
+		(typeof options.selected !== "boolean") && (options.selected = (item.attr("selected") || false));
+		(typeof options.disabled !== "boolean") && (options.disabled = (item.attr("disabled") || false));
+		(typeof options.movable !== "boolean") && (options.movable = (item.attr("movable") || false));
+		options.label = (options["dataOptions"].label || item.find(".xlistbox-item-labeltext").text() || item.text());
 		data.push(options);
 	});
-
-	/*
-		Не children, потому что могут быть обертки из div, мало ли.
-		Это не нарушает логику плагина
-	*/
 	return data;
 };
 
 function createList(data, elem) {
 
-	var options = data.options || data;
-	var xlistboxOptions = JSON.stringify(options);
-	delete data.options;
 	var xlistbox = null;
-	
 	if(!elem) {
 		xlistbox = $("<ul class='xlistbox'/>")
 		.on("click", handlerClick);
 	} else {
-		xlistbox = elem.empty();
+		xlistbox = elem;
+		if(!data["saveDOM"]) {
+			xlistbox.empty();
+			delete data["saveDOM"];
+		}
 	}
 
 	if(!data.multiselect) {
@@ -192,28 +185,32 @@ function createList(data, elem) {
 		}
 	}
 
-	xlistbox.attr("data-options", xlistboxOptions);
 	xlistbox.append(createElems(data));
 
 	if(data["disabled"]) xlistbox.addClass("xlistbox-disabled");
 	else xlistbox.removeClass("xlistbox-item-disabled");
-	xlistbox.data(data);
+	xlistbox.removeAttr("data-options").data(data);
 	return xlistbox;
 }
 
 
-function rerenderList(elem, items) {
+function rerenderList(elem, opt) {
+	opt = opt || {};
+	//{"save": true, items: items}
 	/*
 		На пересоздание с нуля уйдет меньше секунды при элементах = 5000
 	*/
 	var data = $.extend({}, $(elem).data());
+	
+	data.saveDOM = false;
 
-	if(items) {
+	if(opt.items) {
 		data.items = items;
-	} else if(!data.items){
+	} else if(opt.save) {
 		data.items = parseDataFromDOM(elem);
+		data.saveDOM = true;
 	}
-
+	
 	return createList(data, elem);
 }
 
@@ -248,24 +245,20 @@ function createElems(data) {
 	var items = data.items;
 	for(var i = 0; i < items.length; i++) {
 		options = items[i];
-		
 		disabled = options.disabled;
 		selected = options.selected;
 		movable = options.movable;
 
 		text = options.label || "";
-		//delete options.label;
-
-		options = (options["dataOption"]) ? JSON.stringify(options["dataOption"]) : JSON.stringify(options);
 		
 		_label = label.clone();
 
 		_label.append(checkbox.clone())
-		.append(labelText.clone().html(text))
+		.append(labelText.clone().text(text))
 
-		_li = li.clone()
-		.attr("data-options", options)
-		.append(_label);
+		_li = (options["liElem"]) ? options["liElem"].empty().removeAttr("data-options").addClass("xlistbox-item") : li.clone();
+		delete options["liElem"];
+		_li.append(_label);
 
 		if(parentMovable && movable) {
 			_li.append(itemDirection.clone());
@@ -273,6 +266,8 @@ function createElems(data) {
 		
 		if(disabled) {
 			_li.addClass("xlistbox-item-disabled");
+		} else {
+			_li.removeClass("xlistbox-item-disabled");
 		}
 		
 
@@ -283,6 +278,8 @@ function createElems(data) {
 		} else if(oneSelect && selected) {
 			oneSelect = false;
 			_li.addClass("xlistbox-item-selected");
+		} else {
+			_li.removeClass("xlistbox-item-selected");
 		}
 
 		arrList.push(_li);
@@ -370,75 +367,9 @@ function handlerClick(e) {
 			itemsArray[index]["selected"]=true;
 		}
 		currentItem.closest(".xlistbox").trigger("change").trigger("select");
-		/*
-			Мог бы обойтись без класса active,
-			а использовать в CSS 3 [selected=true],
-			но вам нужны пользователи со старыми браузерами 
-		*/
 	}
 	parentOptions.items = itemsArray;
 	parentList.data(parentOptions);
-		/*
-			Могу переписать без делегирования
-		*/
 }
 
 })(jQuery);
-
-/*
-Тест option
-console.log(l.xListBox("option", "disabled"));
-l.xListBox("option", {"disabled": true});
-console.log(l.xListBox("option", "disabled"));
-l.xListBox("option", "disabled", false);
-console.log(l.xListBox("option", "disabled"));
-*/
-
-/*
-Тест items
-var items = l.xListBox("items");//Написано, что возвращать в формате items
-console.log(items);
-items = items.reverse();
-console.log(items);
-l.xListBox("items", items);
-*/
-
-/*
-Тест getSelected
-console.log(l.xListBox("getSelected"));
-*/
-
-/*
-Тест getItem
-console.log(l.xListBox("getItem","worker"));
-console.log(l.xListBox("getItem", l.find("li").eq(0)));
-//$(this).find('li[name="category"]') - так по атрибуту не получится искать,
-//т.к. вы сами изменли условия ТЗ на data-options="{}"
-*/
-
-/*
-Тест setItem:
-console.log(l.xListBox("setItem","order", {disabled: true}));
-*/
-
-/*
-Все вместе
-console.log(l.xListBox("option", "disabled"));
-l.xListBox("option", {"disabled": true});
-console.log(l.xListBox("option", "disabled"));
-l.xListBox("option", "disabled", false);
-console.log(l.xListBox("option", "disabled"));
-
-var items = l.xListBox("items");//Написано, что возвращать в формате items
-console.log(items);
-items = items.reverse();
-console.log(items);
-l.xListBox("items", items);
-
-console.log(l.xListBox("getSelected"));
-
-console.log(l.xListBox("getItem","worker"));
-console.log(l.xListBox("getItem", l.find("li").eq(0)));
-
-console.log(l.xListBox("setItem","order", {disabled: true}));
-*/
