@@ -2,7 +2,7 @@
 	
 	var originList2 = $("#originList2");
 	var xlistboxList1 = originList2.clone();
-	var xlistboxList2 = originList2.clone();
+	var xlistboxList2 = $("#originList1").clone();
 	var xlistboxList3 = originList2.clone();
 	var xlistboxList4 = originList2.clone();
 	var xlistboxList5 = originList2.clone();
