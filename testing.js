@@ -70,26 +70,5 @@
 		disabled: false,
 		multiselect: true,
 	});
-	
-	/*.on("change", function(e){console.log($(this).xListBox('items'));})
-	.on("select", function(e){console.log("select")})
-*/
-
 
 })(jQuery);
-
-/*
-var items = l.xListBox("items");//Написано, что возвращать в формате items
-console.log(items);
-*/
-
-
-
-
-
-
-
-/*
-	var l = $(".listbox1, .listbox2").xListBox(createData2); - работает,
-	но с createData2 нет, т.к. программные опции приоритетнее
-*/
