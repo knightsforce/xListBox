@@ -41,34 +41,36 @@
 		multiselect: true,
 	};
 
-	$("#originList1").xListBox(createData1).xListBox("option", {
-		selectable: true,
-		movable: false,
-		disabled: false,
-		multiselect: true,
-	});
-
-	$("#originList2").xListBox(createData1).xListBox("option", {
-		selectable: false,
-		movable: true,
-		disabled: false,
-		multiselect: true,
-	});
-	
-	$("#originList3").xListBox(createData2).xListBox("option", {
+	$("#originList1").xListBox(createData2).xListBox("option", {
 		selectable: true,
 		movable: true,
 		disabled: true,
 		multiselect: true,
 	});
 
-	$("#originList4").xListBox(createData2).xListBox("option", {
+	$("#originList2").xListBox(createData2).xListBox("option", {
 		selectable: true,
 		movable: true,
 		disabled: false,
 		multiselect: false,
 	});
-	$("#originList5").xListBox();
+
+	$("#originList3").xListBox();
+
+	$("#originList4").xListBox(createData1).xListBox("option", {
+		selectable: true,
+		movable: false,
+		disabled: false,
+		multiselect: true,
+	});
+
+	$("#originList5").xListBox(createData1).xListBox("option", {
+		selectable: false,
+		movable: true,
+		disabled: false,
+		multiselect: true,
+	});
+	
 	/*.on("change", function(e){console.log($(this).xListBox('items'));})
 	.on("select", function(e){console.log("select")})
 */

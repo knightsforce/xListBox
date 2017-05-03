@@ -69,48 +69,14 @@
   <body>
 <h2>При $(СПИСОК).xlistbox(СОЗДАТЬ) - создается НОВЫЙ список на основе существующего</h2>
 
-<h2>ПЕРВЫЙ созданный список - построен на базе данных из оригинальноо списка, ОСТАЛЬНЫЕ - программно</h2>
-  
 <div id="tb1" class="testBlock">
     <div id="cont1" class="container">
-      <h3>Список 1. Создан программно через переданный объект. Опции:</h3>
-      <h5>selectable = true</h5>
-      <h5>movable = false</h5>
-      <h5>disabled = false</h5>
-      <h5>multiselect = true</h5>
-      <ul id="originList1" class="xlistbox" data-options='{"selectable":true,"movable":true,"disabled":false,"multiselect":true,"items":[{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true},{"value":"worker","label":"Исполнители","selected":true,"movable":true},{"value":"element disble","label":"Элемент","selected":false,"movable":true},{"value":"order","label":"Заказы","selected":true}]}'>
-        <li data-options='{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true}'>Категории</li>
-        <li data-options='{"value":"worker","label":"Исполнители","selected":true,"movable":true}'>Исполнители</li>
-        <li data-options='{"value":"element","label":"Элемент","selected":false,"movable":true}'>Элемент выключен</li>
-        <li data-options='{"value":"order","label":"Заказы","selected":true}'>Заказы</li>
-      </ul> 
-    </div>
-</div>
-
-  <div id="tb2" class="testBlock">
-    <div id="cont2" class="container">
-      <h3>Список 2. Создан программно через переданный объект. Опции:</h3>
-      <h5>selectable = false</h5>
-      <h5>movable = true</h5>
-      <h5>disabled = false</h5>
-      <h5>multiselect = true (не играет роли, т.к. selectable = false)</h5>
-      <ul id="originList2" class="xlistbox" data-options='{"selectable":true,"movable":true,"disabled":false,"multiselect":true,"items":[{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true},{"value":"worker","label":"Исполнители","selected":true,"movable":true},{"value":"element disble","label":"Элемент","selected":false,"movable":true},{"value":"order","label":"Заказы","selected":true}]}'>
-        <li data-options='{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true}'>Категории</li>
-        <li data-options='{"value":"worker","label":"Исполнители","selected":true,"movable":true}'>Исполнители</li>
-        <li data-options='{"value":"element","label":"Элемент","selected":false,"movable":true}'>Элемент выключен</li>
-        <li data-options='{"value":"order","label":"Заказы","selected":true}'>Заказы</li>
-      </ul> 
-    </div>
-</div>
-
-<div id="tb3" class="testBlock">
-    <div id="cont3" class="container">
-      <h3>Список 3. Создан от элемента через атрибуты. Опции:</h3>
+      <h3>Список 1. Создан от элемента через атрибуты. Опции:</h3>
       <h5>selectable = true</h5>
       <h5>movable = true (Стрелок нет. Присутствуют только если у списка (ul) и поля списка (li) movable = true одновременно)</h5>
       <h5>disabled = true (интерактив отсутствует)</h5>
       <h5>multiselect = true</h5>
-      <ul id="originList3" class="xlistbox">
+      <ul id="originList1" class="xlistbox">
         <li value="category" selected>Категории</li>
         <li value="worker">Исполнители</li>
         <li value="disabled" selected disabled>Элемент выключен</li>
@@ -119,14 +85,14 @@
     </div>
 </div>
 
-  <div id="tb4" class="testBlock">
-    <div id="cont4" class="container">
-      <h3>Список 4. Создан от элемента через data-options. Опции:</h3>
+  <div id="tb2" class="testBlock">
+    <div id="cont2" class="container">
+      <h3>Список 2. Создан от элемента через data-options. Опции:</h3>
       <h5>selectable = true</h5>
       <h5>movable = true</h5>
       <h5>disabled = false</h5>
       <h5>multiselect = false</h5>
-      <ul id="originList4" class="xlistbox" data-options='{"selectable":true,"movable":true,"disabled":false,"multiselect":true,"items":[{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true},{"value":"worker","label":"Исполнители","selected":true,"movable":true},{"value":"element disble","label":"Элемент","selected":false,"movable":true},{"value":"order","label":"Заказы","selected":true}]}'>
+      <ul id="originList2" class="xlistbox" data-options='{"selectable":true,"movable":true,"disabled":false,"multiselect":true,"items":[{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true},{"value":"worker","label":"Исполнители","selected":true,"movable":true},{"value":"element disble","label":"Элемент","selected":false,"movable":true},{"value":"order","label":"Заказы","selected":true}]}'>
         <li data-options='{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true}'>Категории</li>
         <li data-options='{"value":"worker","label":"Исполнители","selected":true,"movable":true}'>Исполнители</li>
         <li data-options='{"value":"element","label":"Элемент","selected":false,"movable":true}'>Элемент выключен</li>
@@ -135,14 +101,14 @@
     </div>
 <div>
 
-<div id="tb5" class="testBlock">
-    <div id="cont5" class="container">
-      <h3>Список 5. Создан от элемента через data-options вызовом $(id).xListBox(). Опции:</h3>
+<div id="tb3" class="testBlock">
+    <div id="cont3" class="container">
+      <h3>Список 3. Создан от элемента через data-options вызовом $(id).xListBox(). Опции:</h3>
       <h5>selectable = true</h5>
       <h5>movable = true</h5>
       <h5>disabled = false</h5>
       <h5>multiselect = false</h5>
-      <ul id="originList5" class="xlistbox" data-options='{"selectable":true,"movable":true,"disabled":false,"multiselect":true,"items":[{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true},{"value":"worker","label":"Исполнители","selected":true,"movable":true},{"value":"element disble","label":"Элемент","selected":false,"movable":true},{"value":"order","label":"Заказы","selected":true}]}'>
+      <ul id="originList3" class="xlistbox" data-options='{"selectable":true,"movable":true,"disabled":false,"multiselect":true,"items":[{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true},{"value":"worker","label":"Исполнители","selected":true,"movable":true},{"value":"element disble","label":"Элемент","selected":false,"movable":true},{"value":"order","label":"Заказы","selected":true}]}'>
         <li data-options='{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true}'>Категории</li>
         <li data-options='{"value":"worker","label":"Исполнители","selected":true,"movable":true}'>Исполнители</li>
         <li data-options='{"value":"element","label":"Элемент","selected":false,"movable":true}'>Элемент выключен</li>
@@ -150,6 +116,38 @@
       </ul> 
     </div>
 <div>
+
+<div id="tb4" class="testBlock">
+    <div id="cont4" class="container">
+      <h3>Список 4. Создан программно через переданный объект. Опции:</h3>
+      <h5>selectable = true</h5>
+      <h5>movable = false</h5>
+      <h5>disabled = false</h5>
+      <h5>multiselect = true</h5>
+      <ul id="originList4" class="xlistbox" data-options='{"selectable":true,"movable":true,"disabled":false,"multiselect":true,"items":[{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true},{"value":"worker","label":"Исполнители","selected":true,"movable":true},{"value":"element disble","label":"Элемент","selected":false,"movable":true},{"value":"order","label":"Заказы","selected":true}]}'>
+        <li data-options='{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true}'>Категории</li>
+        <li data-options='{"value":"worker","label":"Исполнители","selected":true,"movable":true}'>Исполнители</li>
+        <li data-options='{"value":"element","label":"Элемент","selected":false,"movable":true}'>Элемент выключен</li>
+        <li data-options='{"value":"order","label":"Заказы","selected":true}'>Заказы</li>
+      </ul> 
+    </div>
+</div>
+
+  <div id="tb5" class="testBlock">
+    <div id="cont5" class="container">
+      <h3>Список 5. Создан программно через переданный объект. Опции:</h3>
+      <h5>selectable = false</h5>
+      <h5>movable = true</h5>
+      <h5>disabled = false</h5>
+      <h5>multiselect = true (не играет роли, т.к. selectable = false)</h5>
+      <ul id="originList5" class="xlistbox" data-options='{"selectable":true,"movable":true,"disabled":false,"multiselect":true,"items":[{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true},{"value":"worker","label":"Исполнители","selected":true,"movable":true},{"value":"element disble","label":"Элемент","selected":false,"movable":true},{"value":"order","label":"Заказы","selected":true}]}'>
+        <li data-options='{"value":"category","label":"Категории","selected":true,"disabled":true,"movable":true}'>Категории</li>
+        <li data-options='{"value":"worker","label":"Исполнители","selected":true,"movable":true}'>Исполнители</li>
+        <li data-options='{"value":"element","label":"Элемент","selected":false,"movable":true}'>Элемент выключен</li>
+        <li data-options='{"value":"order","label":"Заказы","selected":true}'>Заказы</li>
+      </ul> 
+    </div>
+</div>
 
     <script src="./jquery.min.js"></script>
     <script src="./xListBox.js"></script>
